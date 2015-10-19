@@ -1,5 +1,3 @@
-CREATE DATABASE  IF NOT EXISTS `lms` /*!40100 DEFAULT CHARACTER SET utf8 */;
-USE `lms`;
 -- MySQL dump 10.13  Distrib 5.6.23, for Win64 (x86_64)
 --
 -- Host: 127.0.0.1    Database: lms
@@ -198,8 +196,9 @@ CREATE TABLE `roles` (
   `role_id` int(11) NOT NULL,
   `role_name` varchar(20) NOT NULL,
   `active` int(1) DEFAULT NULL,
-  PRIMARY KEY (`id`,`role_id`),
-  UNIQUE KEY `role_name_UNIQUE` (`role_name`)
+  PRIMARY KEY (`role_id`),
+  UNIQUE KEY `role_name_UNIQUE` (`role_name`),
+  UNIQUE KEY `id_UNIQUE` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -261,10 +260,12 @@ CREATE TABLE `users` (
   `active` int(1) DEFAULT NULL,
   `registered_on` date DEFAULT NULL,
   `role_id` int(11) NOT NULL,
-  PRIMARY KEY (`id_pk`,`username`),
-  KEY `role-id_fk_idx` (`role_id`),
-  CONSTRAINT `role-id_fk` FOREIGN KEY (`role_id`) REFERENCES `roles` (`id`) ON DELETE NO ACTION ON UPDATE NO ACTION
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `zip` int(10) DEFAULT NULL,
+  `userscol` varchar(45) DEFAULT NULL,
+  PRIMARY KEY (`id_pk`),
+  UNIQUE KEY `username_UNIQUE` (`username`),
+  KEY `role-id_fk_idx` (`role_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8 KEY_BLOCK_SIZE=2;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -276,4 +277,4 @@ CREATE TABLE `users` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-10-10 19:13:24
+-- Dump completed on 2015-10-19 13:39:55
