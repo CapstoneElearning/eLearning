@@ -1,0 +1,668 @@
+/* app css stylesheet */
+	html, body
+	{
+		height: 100%;
+	}
+	
+	body
+	{
+		margin: 0em 5em 0em 5em;
+		padding: 0px;
+		background: #FFF;
+		font-family: 'Source Sans Pro', sans-serif;
+		font-size: 12pt;
+		font-weight: 300;
+		color: #000000;
+		background: white;
+	}	
+	
+	.content
+	{
+		margin: 0;
+		padding: 0px;
+		background: #F7F7F8;
+	}
+	
+	h1, h2, h3
+	{
+		margin: 0;
+		padding: 0;
+	}
+	
+	p, ol, ul
+	{
+		margin-top: 0;
+	}
+	
+	ol, ul
+	{
+		padding: 0;
+		list-style: none;
+	}
+	
+	p
+	{
+		line-height: 180%;
+	}
+	
+	strong
+	{
+	}
+	
+	a
+	{
+		color: #0000FF;
+	}
+	
+	a:hover
+	{
+		text-decoration: none;
+	}
+	
+	.container
+	{
+		overflow: hidden;
+		margin: 0em auto;
+		width: 95%;
+	}
+	
+/*********************************************************************************/
+/* Image Style                                                                   */
+/*********************************************************************************/
+
+	.image
+	{
+		display: inline-block;
+	}
+	
+	.image img
+	{
+		display: block;
+		width: 100%;
+	}
+	
+	.image-full
+	{
+		display: block;
+		width: 100%;
+		margin: 0 0 2em 0;
+	}
+	
+	.image-left
+	{
+		float: left;
+		margin: 0 2em 2em 0;
+	}
+	
+	.image-centered
+	{
+		display: block;
+		margin: 0 0 2em 0;
+	}
+	
+	.image-centered img
+	{
+		margin: 0 auto;
+		width: auto;
+	}
+
+/*********************************************************************************/
+/* List Styles                                                                   */
+/*********************************************************************************/
+
+	ul.style3
+	{
+		margin: 0;
+		padding: 0;
+		overflow: hidden;
+		list-style: none;
+		color: #6c6c6c
+	}
+	
+	ul.style3 li
+	{
+		overflow: hidden;
+		display: block;
+		padding: 0.8em 0em 0em 0em;
+		margin: 0 0 1.3em 0;
+		border-top: 1px solid #D1CFCE;
+	}
+	
+	ul.style3 li:first-child
+	{
+		padding-top: 0;
+		border-top: none;
+	}
+	
+	ul.style3 p
+	{
+		margin: 0;
+	}
+	
+	ul.style3 a
+	{
+		display: block;
+		text-decoration: none;
+		color: #2D2D2D;
+	}
+	
+	ul.style3 a:hover
+	{
+		text-decoration: underline;
+	}
+	
+	ul.style3 h3
+	{
+		padding: 15px 0em 5px 0em;
+		text-transform: uppercase;
+		font-size: 1.1em;
+		font-weight: 700;
+		color: #454445;
+	}
+	
+	ul.style3 .first
+	{
+		padding-top: 0;
+		background: none;
+	}
+	
+	ul.style3 .date
+	{
+		float: left;
+		position: relative;
+		width: 60px;
+		height: 50px;
+		margin: 10px 1.5em 0em 0em;
+		padding: 10px 0em 0em 0em;
+		background: #0173B2;
+		box-shadow: 0px 0px 0px 5px rgba(255,255,255,0.1);
+		line-height: normal;
+		text-align: center;
+		text-transform: uppercase;
+		text-shadow: 0px 1px 0px rgba(0,0,0,.2);
+		font-size: 0.8em;
+		font-weight: 400;
+		color: #FFF;
+	}
+	
+	ul.style3 .date:after
+	{
+		content: '';
+		display: block;
+		position: absolute;
+		left: 0;
+		top: 0;
+		width: 100%;
+		height: 100%;
+		border-radius: 6px;
+		background: url(images/bg01.png) repeat;
+	}
+
+	ul.style3 .date b
+	{
+		margin: 0;
+		padding: 0;
+		display: block;
+		font-size: 1.8em;
+		font-weight: 400;
+		color: #FFFFFF;
+	}
+	
+	ul.style3 .date a
+	{
+		color: #FFFFFF !important;
+	}
+	
+	ul.style3 .date a:hover
+	{
+		text-decoration: none;
+	}
+
+	
+
+
+/*********************************************************************************/
+/* Social Icon Styles                                                            */
+/*********************************************************************************/
+
+	ul.social
+	{
+		overflow:  hidden;
+		margin: 0em 0 3em 0;
+		padding-top: 1em;
+		text-align: center;
+	}
+	
+	ul.social li
+	{
+		display: inline-block;
+		padding: 0em 0.30em;
+		font-size: 1em;
+	}
+	
+	ul.social li span
+	{
+		display: none;
+		margin: 0;
+		padding: 0;
+	}
+	
+	ul.social li a
+	{
+		color: #FFF;
+	}
+	
+	ul li a i {
+    background: #205D7A;
+    color: #fff;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    font-size: 25px;
+    text-align: center;
+    margin-right: 10px;
+    padding-top: 15%;
+    transition: all 0.2s ease-in-out;
+}
+.fa-facebook {
+    background:#3b5998
+} 
+.fa-linkedin {
+    background:#007bb6
+}
+.fa-twitter {
+    background:#00aced
+}
+.google-plus {
+    background:#dd4b39
+}
+ul li a i:hover {
+    opacity: .7;
+}
+
+/*********************************************************************************/
+/* Button Style                                                                  */
+/*********************************************************************************/
+
+	.button
+	{
+		display: inline-block;
+		padding: 1em 2em 1em 2em;
+		background: #0173B2;
+		letter-spacing: 0.20em;
+		text-decoration: none;
+		text-transform: uppercase;
+		font-weight: 400;
+		font-size: 0.60em;
+		color: #FFF;
+	}
+	
+	.button:before
+	{
+	}
+		
+/*********************************************************************************/
+/* 4-column                                                                      */
+/*********************************************************************************/
+
+	.box1,
+	.box2,
+	.box3,
+	.box4
+	{
+		width: 235px;
+	}
+	
+	.box1,
+	.box2,
+	.box3,
+	{
+		float: left;
+		margin-right: 20px;
+	}
+	
+	.box4
+	{
+		float: right;
+	}
+	
+/*********************************************************************************/
+/* 3-column                                                                      */
+/*********************************************************************************/
+
+	.boxA
+	{
+		background: #FFF;
+		width: 70%;
+		padding: 20px 20px;
+
+	}
+
+	.boxA
+	{
+		margin-right: 20px;
+		margin-left: 20px;
+	}
+
+
+
+/*********************************************************************************/
+/* 2-column                                                                      */
+/*********************************************************************************/
+
+	.tbox1,
+	.tbox2
+	{
+		width: 575px;
+	}
+	
+	.tbox1
+	{
+		float: left;
+	}
+
+	.tbox2
+	{
+		float: right;
+	}
+
+/*********************************************************************************/
+/* Header                                                                        */
+/*********************************************************************************/
+
+	#header-wrapper
+	{
+	}
+
+	#header
+	{
+		position: relative;
+		padding: 3em 0em;
+	}
+
+/*********************************************************************************/
+/* Logo                                                                          */
+/*********************************************************************************/
+
+	#logo
+	{
+		position: absolute;
+		background: url(images/logo.png) no-repeat left top;
+		overflow: hidden;
+		padding: 5em 0em 5em 0em;
+		background-size: 100% auto;
+		top: 1em;
+		height: 80%;
+		left: 0;
+	}
+	
+	#logo h1
+	{
+		
+	}
+	
+	#logo a
+	{
+		text-decoration: none;
+		color: #0173B2;
+	}
+
+/*********************************************************************************/
+/* Menu                                                                          */
+/*********************************************************************************/
+
+	#menu
+	{
+		position: absolute;
+		top: 2em;
+		right: 0;
+	}
+	
+	#menu ul
+	{
+		display: inline-block;
+	}
+	
+	#menu li
+	{
+		display: block;
+		float: left;
+		text-align: center;
+	}
+	
+	#menu li a, #menu li span
+	{
+		padding: 1em 1.5em;
+		text-decoration: none;
+		font-weight: 400;
+		color: rgba(0,0,0,.8);
+	}
+	
+	#menu li:hover a, #menu li.active a, #menu li.active span
+	{
+	}
+	
+	#menu a:hover
+	{
+		text-decoration: underline;
+	}
+	
+	#menu .current_page_item a
+	{
+	}
+	
+	#menu .icon
+	{
+	}
+
+/*********************************************************************************/
+/* Banner                                                                        */
+/*********************************************************************************/
+
+	#banner-wrapper
+	{
+		overflow: hidden;
+		padding: 10em 0em 5em 0em;
+		background: url(images/bg04.jpg)  center top;
+		background-size: 100% auto;
+	}
+	
+	#banner .title
+	{
+		margin-bottom: 3em;
+		text-align: center;
+	}
+	
+	#banner h3
+	{
+		margin-bottom: 1em;
+		font-size: 1.4em;
+		font-weight: 600;
+		color: rgba(0,0,0,.8);
+	}
+
+	#banner .button
+	{
+		margin-top: 1em;
+	}
+
+/*********************************************************************************/
+/* Footer                                                                        */
+/*********************************************************************************/
+	#content-wrapper
+	{
+		overflow: hidden;
+		padding: 2em 0em;
+		background: rgba(0,0,0,.05);
+	}
+	#footer-wrapper
+	{
+		overflow: hidden;
+		padding: 5em 0em;
+		background: rgba(0,0,0,.05);
+	}
+	#footer h2
+	{
+		display: inline-block;
+		padding-bottom: 1em;
+		font-size: 1.6em;
+		font-weight: 400;
+	}
+
+	#footer #fbox1
+	{
+		float: left;
+		width: 384px;
+	}
+
+	#footer #fbox2
+	{
+		float: right;
+		width: 792px;
+	}
+
+/*********************************************************************************/
+/* Copyright                                                                     */
+/*********************************************************************************/
+
+	#copyright
+	{
+		overflow: hidden;
+		padding: 5em 0em;
+		border-top: 1px solid rgba(0,0,0,0.08);
+	}
+	
+	#copyright p
+	{
+		letter-spacing: 0.20em;
+		text-align: center;
+		text-transform: uppercase;
+		font-size: 0.80em;
+		color: rgba(0,0,0,0.6);
+	}
+	
+	#copyright a
+	{
+		text-decoration: none;
+		color: rgba(0,0,0,0.8);
+	}
+
+/*********************************************************************************/
+/* form                                                                      */
+/*********************************************************************************/
+
+
+.form-card {
+  padding: 2em;
+  width: 60%;
+  background-color: #F7F7F7;
+  margin: 0 auto 2em;
+  border-radius: 2px;
+  box-shadow: 0px 1px 1px 1px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.form-card h2 {
+  text-align: center;
+  font-size: 1.2em;
+  padding-bottom: 1em;
+  font-weight: 300;
+}
+
+.form-card input[type=submit] {
+  width: 100%;
+  display: block;
+  margin-bottom: 10px;
+  position: relative;
+}
+
+.form-card input[type=text], input[type=password] {
+  height: 44px;
+  font-size: 16px;
+  width: 100%;
+  margin-bottom: 10px;
+  -webkit-appearance: none;
+  background: #fff;
+  border: 1px solid #d9d9d9;
+  border-top: 1px solid #c0c0c0;
+  padding: 0 8px;
+  box-sizing: border-box;
+  -moz-box-sizing: border-box;
+}
+
+.form-card input[type=text]:hover, input[type=password]:hover {
+  border: 1px solid #b9b9b9;
+  border-top: 1px solid #a0a0a0;
+  -moz-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  -webkit-box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+  box-shadow: inset 0 1px 2px rgba(0,0,0,0.1);
+}
+
+.login {
+  text-align: center;
+  font-size: 14px;
+  font-family: 'Arial', sans-serif;
+  font-weight: 700;
+  height: 36px;
+  padding: 0 8px;
+}
+
+a {
+  text-decoration: none;
+  color: #666;
+  font-weight: 400;
+  text-align: center;
+  display: inline-block;
+  opacity: 0.6;
+}
+
+.form-card a:hover {
+  opacity: 1;
+}
+
+.login-help {
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+}
+
+#formData{
+  width: 80%;
+}
+#leftForm{
+  float: left;
+  width: 45%;
+}
+#rightForm{
+  width: 45%;
+  float: right;
+}
+#bottomForm{
+  clear: both;
+  transition: opacity ease 0.5s;
+  text-align: center;
+  padding: 1em;
+  width: 75%;
+  background-color: #F7F7F7;
+  margin: 0 auto 1em;
+  border-radius: 1px;
+  overflow: hidden;
+}
+#bottomForm a{
+  color:white;
+}
+#bottomForm a:hover{
+  border: 0px;
+  text-shadow: 0 1px rgba(0,0,0,0.3);
+  background-color: #357ae8;
+}
+
+#mainPage{
+  overflow: hidden;
+  margin: 0em;
+  opacity: 0.7;
+  transition: opacity ease 0.5s;
+  padding: 2em;
+  background-color: #eff4f6;
+}
+

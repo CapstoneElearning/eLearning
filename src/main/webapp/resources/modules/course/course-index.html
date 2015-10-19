@@ -1,0 +1,47 @@
+<div class='row'>
+
+  <div class='col-md-2'>
+    <h3>Courses Index</h3>
+  </div>
+
+  <div class='col-md-2'>
+    <a ui-sref="newCourse" class="btn btn-default" style="margin-top: 15px">
+      Add a Course
+    </a>
+  </div>
+
+</div><hr><br>
+
+<ul class='list-unstyled list-inline'>
+  <li ng-repeat='Course in Courses' class='col-md-4'>
+    <div class='row'>
+
+      <div class='col-md-4'>
+        <div class='row'>
+          <div class='col-md-8 col-md-offset-2'>
+            <img
+              ng-src="{{ Course.image }}" style="height:120px"
+              alt="{{ Course.title }}">
+          </div>
+        </div>
+      </div>
+
+      <div class='col-md-8'>
+
+        <a ui-sref="showCourse({ id: {{ Course.id }} })">
+          {{ Course.title }}
+        </a> <br>
+
+        by {{ Course.author }} <br>
+
+        Released: {{ Course.release_date }} <br><br>
+
+        <a class="btn btn-danger" ng-click="deleteCourse($index)">
+          Delete
+        </a>
+
+      </div>
+
+    </div><br><br><br>
+  </li>
+</ul>
