@@ -5,8 +5,8 @@
 
 angular.module('myApp').controller('SignupCtrl', SignupCtrl);
 
-SignupCtrl.$inject = ['UserService', '$location', '$rootScope', 'FlashService',];
-function SignupCtrl(UserService, $location, $rootScope, FlashService) {
+SignupCtrl.$inject = ['UserService', '$location', '$rootScope', 'FlashService','$stateProvider'];
+function SignupCtrl(UserService, $location, $rootScope, FlashService,$stateProvider) {
     var vm = this;
 
     vm.register = register;
@@ -34,7 +34,7 @@ function SignupCtrl(UserService, $location, $rootScope, FlashService) {
             .then(function (response) {
                 if (response) {
                     FlashService.Success('Registration successful', true);
-                    $location.path('/success');
+                    $stateProvider.state('signup.success');
                 } else {
                     FlashService.Error(response.message);
                     vm.dataLoading = false;

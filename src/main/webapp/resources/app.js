@@ -17,24 +17,40 @@ function config($routeProvider,$locationProvider,$httpProvider,$urlRouterProvide
         	url:'/home',
             views: {
             	'courses': {
-                    templateUrl: '../resources/modules/partials/courses.html' 
+                    templateUrl: '../resources/modules/course/courses.html' 
                 }
             }
         
         })
         .state('login',{
+        	url:'/login',
             views: {    
             	'content': {
                     templateUrl: '../resources/modules/login/login.html' ,
+                    controller: 'LoginCtrl'
+                    
                 }
             }
         
         })
         
         .state('signup',{
+        	url: '/signup',	
             views: {              	
                 'content': {
                     templateUrl: '../resources/modules/signup/signup.html' ,
+                    controller: 'SignupCtrl'
+                }
+            }
+        
+        })
+        
+         .state('signup.success',{
+        	url: '/signup/success',	
+            views: {              	
+                'content': {
+                    templateUrl: '../resources/modules/signup/success.html' ,
+                    controller: 'SignupCtrl'
                 }
             }
         
@@ -43,7 +59,7 @@ function config($routeProvider,$locationProvider,$httpProvider,$urlRouterProvide
         .state('about',{
             views: {              
                 'content': {
-                    templateUrl: '../resources/modules/about/aboutus.html' ,
+                    templateUrl: '../resources/modules/about/aboutus.html' ,                    
                 }
             }
         
