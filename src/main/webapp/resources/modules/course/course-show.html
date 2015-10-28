@@ -1,0 +1,25 @@
+<div class='well col-md-8'>
+
+  <div class='col-md-4'>
+
+    <img ng-src="{{ course.image }}" style="height:300px" alt="{{ course.title }}">
+
+  </div>
+
+  <div class='col-md-4'>
+
+    <h3>{{ course.title }}</h3>
+    <strong>Author: </strong> {{ course.author }} <br>
+    <strong>Release Date: </strong> {{ course.release_date }} <br><br>
+    <!--  notice the difference here in the editcourse parameter,
+    between this template and courses-index.html
+    below works because course is defined on the scope,
+    but in courses-index.html, an expression is needed because
+    course is coming from the ng-repeat block -->
+    <a class='btn btn-primary' ui-sref="editcourse({ id: course.id })">
+      Edit
+    </a>
+
+  </div>
+
+</div>

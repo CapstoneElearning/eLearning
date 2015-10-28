@@ -1,0 +1,9 @@
+ul {
+    overflow: auto;
+}
+ 
+ul li {
+    list-style-type: none;
+    float: none;
+}
+ 

@@ -1,0 +1,54 @@
+
+<div class="form-group">
+  <label for="course-title" class="col-sm-3 control-label">
+    Title
+  </label>
+  <div class="col-sm-9">
+    <input type="text" class="form-control" id="course-title"
+        ng-model="course.title" placeholder="title">
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="course-instructor" class="col-sm-3 control-label">
+    instructor
+  </label>
+  <div class="col-sm-9">
+    <input type="text" class="form-control" id="course-instructor"
+        ng-model="course.instructor" placeholder="instructor">
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="course-image" class="col-sm-3 control-label">
+    Image URL
+  </label>
+  <div class="col-sm-9">
+    <input type="url" class="form-control" id="course-image"
+      ng-model="course.image" placeholder="image url">
+  </div>
+</div>
+
+<div class="form-group">
+  <label for="course-release-date" class="col-sm-3 control-label">
+    Release Date
+  </label>
+  <!-- insert a date input if adding a new course or updating a course
+  that has release_date in the form of month/day/year -->
+  <div class="col-sm-9" ng-if="newcourse || course.release_date_as_date">
+    <input type="date" class="form-control" id="course-release-date"
+        ng-model="course.release_date_as_date" placeholder="release date">
+  </div>
+  <!-- insert a text input if updating a course that has release_date
+  as year only -->
+  <div class="col-sm-9" ng-if="!newcourse && !course.release_date_as_date">
+    <input type="text" class="form-control" id="course-release-date"
+        ng-model="course.release_date" placeholder="release date">
+  </div>
+</div><br>
+
+<div class="form-group">
+  <div class="col-sm-offset-3 col-sm-9 text-right">
+    <button type="submit" class="btn btn-primary">{{ submitText }}</button>
+  </div>
+</div>

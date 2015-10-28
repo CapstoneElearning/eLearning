@@ -1,0 +1,33 @@
+POST  LOGIN
+
+http://localhost:8080/eLearning/webservices/userlogin/
+
+{"username":"deepti1729","password":"abc"}
+
+
+200 OK
+Server: Apache-Coyote/1.1
+Content-Type: application/json
+Content-Length: 394
+Date: Wed, 14 Oct 2015 23:07:01 GMT
+
+{"id":10,"username":"deepti1729","password":"abc","fname":"Deepthi","mname":"Reddy","lname":null,"dob":"2014-01-01","email":"deepti1729@gmail.com","phone_home":"101020203635","phone_cell":"4875123697","address1":"2500","address2":"medallion","city":"Union city","state":"CA","country":"USA","pwd_hint":"first gift?","pwd_hint_ans":"toys","active":false,"registered_on":"2014-01-01","role_id":2}
+
+
+POST SAVE
+
+http://localhost:8080/eLearning/webservices/user/
+
+
+{"username":"deepti1729", "password":"abc", "fname":"Deepthi","lname":"Gurijala","mname":"Reddy","dob":"2014-01-01T23:28:56.782Z","email":"deepti1729@gmail.com","phone_home":"101020203635","phone_cell":"4875123697","address1":"2500","address2":"medallion","city":"Union city","state":"CA","country":"USA","pwd_hint":"first gift?","pwd_hint_ans":"toys","active":"false","registered_on":"2014-01-01T23:28:56.782Z","role_id":2}
+
+
+
+201 Created
+Server: Apache-Coyote/1.1
+Content-Type: application/json
+Content-Length: 402
+Date: Wed, 14 Oct 2015 23:10:36 GMT
+
+{"id":11,"username":"deepti1729","password":"abc","fname":"Deepthi","mname":"Reddy","lname":"Gurijala","dob":1388618936782,"email":"deepti1729@gmail.com","phone_home":"101020203635","phone_cell":"4875123697","address1":"2500","address2":"medallion","city":"Union city","state":"CA","country":"USA","pwd_hint":"first gift?","pwd_hint_ans":"toys","active":false,"registered_on":1388618936782,"role_id":2}
+

@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!-->
+<html lang="en" ng-app="myApp" class="no-js">
+<!--<![endif]-->
+<head>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<title>My AngularJS App</title>
+<meta name="description" content="">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+<link
+	href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css"
+	rel="stylesheet">
+<link rel="stylesheet" href="app.css">
+</head>
+<body ng-app="myApp">
+
+	<!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+	<div id="header" class="container">
+		<div id="logo">
+			<h1>
+				<a href="#">eLearning System</a>
+			</h1>
+		</div>
+		<div id="menu">
+			<ul>
+				<li ui-sref-active="active"><a ui-sref="home" accesskey="2"
+					title="">Home</a></li>
+				<li ui-sref-active="active"><a ui-sref="login" accesskey="2"
+					title="">Login</a></li>
+				<li ui-sref-active="active"><a ui-sref="signup" accesskey="1"
+					title="">Sign Up</a></li>
+				<li ui-sref-active="active"><a ui-sref="contact" accesskey="4"
+					title="">Contact Us</a></li>
+				<li ui-sref-active="active"><a ui-sref="about" accesskey="3"
+					title="">About Us</a></li>
+			</ul>
+		</div>
+	</div>
+	<div id="banner-wrapper">
+		<div id="banner" class="container">
+			<div class="boxA">
+				<form name="search-form" action="/courses" method="get">
+					<input type="text" placeholder="Search for Courses" size="30">
+					<a href="#" class="button">Submit</a>
+				</form>
+
+			</div>
+		</div>
+	</div>
+	<div class="content">
+		<div ui-view="courses"></div>
+		<div ui-view="content"></div>
+	</div>
+
+	<div id="copyright">
+		<ul class=social>
+			<li><a href="http://facebook.com/"><i class="fa fa-facebook"></i></a></li>
+			<li><a href="http://linkedin.com/"><i class="fa fa-linkedin"></i></a></li>
+			<li><a href="http://twitter.com/"><i class="fa fa-twitter"></i></a></li>
+			<li><a href="http://plus.google.com/"><i
+					class="fa fa-google-plus"></i> </a></li>
+		</ul>
+
+		<p>&copy; Capstone CS- eLearning All rights reserved.</p>
+	</div>
+	<script
+		src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+	<script src="http://code.angularjs.org/snapshot/angular.min.js"></script>
+	<script src="http://code.angularjs.org/snapshot/angular-route.min.js"></script>
+	<script src="https://code.jquery.com/jquery-2.1.4.min.js"></script>
+	<script src="http://code.angularjs.org/snapshot/angular-cookies.min.js"></script>
+	<script
+		src="//cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.min.js"></script>
+	<script src="http://code.angularjs.org/snapshot/angular-messages.js"></script>
+	<script
+		src="http://code.angularjs.org/snapshot/angular-resource.min.js "></script>
+	<script src="app.js"></script>
+	<script src="app-services/authentication.service.js"></script>
+	<script src="app-services/flash.service.js"></script>
+	<script src="app-services/user.service.js"></script>
+	<script src="app-services/course.service.js"></script>
+	<script src="modules/login/loginCtrl.js"></script>
+	<script src="modules/home/homeCtrl.js"></script>
+	<script src="modules/course/courseCtrl.js"></script>
+	<script src="modules/signup/signupCtrl.js"></script>
+	<script src="components/version/version.js"></script>
+	<script src="components/version/version-directive.js"></script>
+	<script src="components/version/interpolate-filter.js"></script>
+</body>
+</html>

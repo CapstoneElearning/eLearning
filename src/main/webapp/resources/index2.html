@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html lang="en" ng-app="myApp" class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html lang="en" ng-app="myApp" class="no-js"> <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>My AngularJS App</title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+  <link href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet">
+  <link rel="stylesheet" href="app.css">
+  <link href="default.css" rel="stylesheet" type="text/css" media="all" />
+  <link href="fonts.css" rel="stylesheet" type="text/css" media="all" />
+  <script src="bower_components/html5-boilerplate/dist/js/vendor/modernizr-2.8.3.min.js"></script>
+</head>
+<body ng-app="myApp">
+<div>
+
+  <div id="header" class="container">
+    <div id="logo">
+      <h1><a href="#">eLearning System</a></h1>
+    </div>
+    <div id="menu">
+      <ul>
+        <li><a href="#/login" accesskey="2" title="">Login</a></li>
+        <li><a href="#/signup" accesskey="1" title="">Sign Up</a></li>
+        <li><a href="#/contact" accesskey="4" title="">Contact Us</a></li>
+        <li><a href="#/about" accesskey="3" title="">About Us</a></li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div id="banner-wrapper">
+  <div id="banner" class="container">
+
+    <div class="boxA">
+      <form name="search-form" action="/courses" method="get">
+        <input type="text" placeholder="Search for Courses" size="30">
+        <a href="#" class="button">Submit</a>
+      </form>
+
+    </div>
+  </div>
+</div>
+
+  <!--[if lt IE 7]>
+      <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+  <![endif]-->
+
+
+  <div id="content-wrapper">
+    <div id="footer" class="container">
+      <div id="fbox1">
+        <h2>Up coming Courses</h2>
+        <ul class="style3">
+          <li class="first">
+            <p class="date"><a href="#">Oct<b>15</b></a></p>
+            <h3>Computer Algorithms</h3>
+            <p><a href="#">Data Structures and Algorithms</a></p>
+          </li>
+          <li>
+            <p class="date"><a href="#">Oct<b>11</b></a></p>
+            <h3>Programming</h3>
+            <p><a href="#">Java and Internet Applications</a></p>
+          </li>
+        </ul>
+      </div>
+      <!---- main modules start--->
+      <div id="mainPage" ng-view></div>
+
+      <!---- main modules end--->
+
+    </div>
+  </div>
+  <div id="copyright">
+    <ul class=social>    
+    <li><a href="http://facebook.com/"><i class="fa fa-facebook"></i></a></li>
+    <li><a href="http://linkedin.com/"><i class="fa fa-linkedin"></i></a></li>
+    <li><a href="http://twitter.com/"><i class="fa fa-twitter"></i></a></li>
+    <li><a href="http://plus.google.com/"><i class="fa fa-google-plus"></i> </a></li>
+     </ul>
+
+    <p>&copy; Capstone CS- eLearning All rights reserved.</p>
+  </div>
+  <!-- In production use:
+  <script src="//ajax.googleapis.com/ajax/libs/angularjs/x.x.x/angular.min.js"></script>
+  -->
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-route/angular-route.js"></script>
+  <script src="bower_components/jquery/dist/jquery.js"></script>
+  <script src="bower_components/angular-cookies/angular-cookies.js"></script>
+  <script type="text/javascript" src="http://code.angularjs.org/snapshot/angular-messages.js"></script>
+  
+  <script src="app.js"></script>
+  <script src="app-services/authentication.service.js"></script>
+  <script src="app-services/flash.service.js"></script>
+  <script src="app-services/user.service.js"></script>
+  <script src="modules/login/loginCtrl.js"></script>
+  <script src="modules/home/homeCtrl.js"></script>
+  
+  <script src="modules/signup/signupCtrl.js"></script>
+  <script src="components/version/version.js"></script>
+  <script src="components/version/version-directive.js"></script>
+  <script src="components/version/interpolate-filter.js"></script>
+</body>
+</html>
