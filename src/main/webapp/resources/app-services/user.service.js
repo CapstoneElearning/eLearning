@@ -29,7 +29,7 @@
 
         function Login(uname,pwd,callback) {
             return $http.post('/eLearning/webservices/userlogin', {username:uname,password:pwd})
-                .then(handleSuccess, handleError('Error getting user by username'));
+                .then(handleSuccess, handleError('Invalid username or password'));
         }
 
         function GetByUsername(username) {

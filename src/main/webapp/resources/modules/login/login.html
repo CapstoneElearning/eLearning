@@ -1,4 +1,6 @@
 <div class="form-card" ng-controller="LoginCtrl as vm">
+        <div ng-show="vm.error" class="alert alert-danger">{{vm.error}}</div>
+
     <div class="col-md-6 col-md-offset-3">
 		<h2>Login</h2>
 		<form name="form" ng-submit="vm.login()" role="form">
