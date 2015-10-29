@@ -14,6 +14,7 @@ public interface UserDao {
 	  public boolean isEmailExists(String email) throws DaoException;
 	  public boolean resetPassword(String email, String password) throws DaoException;
 	  public List<User> getAllUsers() throws DaoException;
+	  public boolean isUniqueUser(String username) throws DaoException;
 
 
 }

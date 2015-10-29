@@ -229,5 +229,27 @@ public class UserDaoImpl implements UserDao {
 		}
 		return uList;
 	}
+	
+	@Override
+	public boolean isUniqueUser(String username) throws DaoException {
+		boolean flag = true;
+		try {
+			String sql = "SELECT * FROM users WHERE username = :username";
+			MapSqlParameterSource params = new MapSqlParameterSource("username", username);
+			User user = namedTemplate.queryForObject(sql, params, userPojo);
+			if (user.getUsername() != null) {
+				flag = false;
+			}
+		} catch (EmptyResultDataAccessException e) {
+			logger.error("Exception occured in UserDaoImpl :: isUniqueUser() for username : " + username, e);
+			return flag;
+
+		} catch (Exception e) {
+			logger.error("Exception occured in UserDaoImpl :: isUniqueUser() for username : " + username, e);
+			return flag;
+		}
+		return flag;
+
+	}
 
 }

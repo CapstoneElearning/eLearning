@@ -135,4 +135,16 @@ public class UserServiceImpl implements UserService {
 
 	}
 
+	@Override
+	public boolean isUniqueUser(String username) throws ServiceException {
+		boolean isUnique = true;
+		try {
+			isUnique = userDao.isUniqueUser(username);
+		} catch (Exception e) {
+			logger.error("Exception while getting all users");
+			throw new ServiceException("Exception while getting all users");
+		}
+		return isUnique;
+	}
+
 }

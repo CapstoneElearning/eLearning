@@ -77,6 +77,22 @@ public class UserRestHandler {
 
 		return user2;
 	}
+	
+	@GET
+	@Path("/user/isunique/{username}")
+	@Produces("application/xml, application/json")
+
+	public boolean isUniqueUser(@PathParam("username") String username) {
+		boolean isUnique=true;
+		try {
+			isUnique = userService.isUniqueUser(username);
+		} catch (Exception ex) {
+			logger.info("Exception::::::" + ex.getMessage());
+			throw new WebApplicationException(ex.getMessage(), Status.INTERNAL_SERVER_ERROR);
+		}
+
+		return isUnique;
+	}
 
 	@POST
 	@Path("/userlogin")
