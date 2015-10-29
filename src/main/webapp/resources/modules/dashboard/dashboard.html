@@ -1,0 +1,42 @@
+<div  ng-controller="dashboardCtrl as vm">
+	<h3>Hi {{vm.user.username}}! <p class="logout">
+		<a href="#/login" class="btn btn-warning">Logout</a>
+	</p></h3>
+	
+
+	<div class="container">
+		<h3>List of Students</h3>
+		<table class="table table-bordered">
+			<thead>
+				<tr>
+					<th>UserName</th>
+					<th>First Name</th>
+					<th>Middle Name</th>
+					<th>Last Name</th>
+					<th>DOB</th>
+					<th>Email Address</th>
+					<th>Cell Phone</th>
+					<th>Home Phone</th>
+					<th>Address</th>
+					<th>Zip Code</th>
+
+				</tr>
+			</thead>
+			<tr ng-repeat="user in vm.allUsers">
+				<td>{{ vm.user.username }}</td>
+				<td>{{ user.fname }}</td>
+				<td> {{ user.mname }}</td>
+				<td> {{user.lname}}</td>
+				<td>{{ user.dob }}</td>
+				<td>{{ user.email }}</td>
+				<td>{{user.phone_cell}}</td>
+				<td>{{user.phone_home}}</td>
+				<td>{{ user.address1 }} {{ user.address2 }} {{ user.city }} {{
+					user.state }} {{ user.country }}</td>
+				 <td ng-show="user.zip !=0">{{ user.zip }}&nbsp;</td>
+				 <td ng-show="user.zip==0">&nbsp;</td>
+					
+			</tr>
+		</table>
+	</div>
+</div>
