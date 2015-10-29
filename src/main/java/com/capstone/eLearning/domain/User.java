@@ -29,7 +29,7 @@ public class User {
 	private String address2;
 	private String city;
 	private String state;
-	//private Integer zip;
+	private Integer zip;
 	private String country;
 	private String pwd_hint;
 	private String pwd_hint_ans;
@@ -163,13 +163,13 @@ public class User {
 		this.active = active;
 	}
 
-/*	public Integer getZip() {
+	public Integer getZip() {
 		return zip;
 	}
 	public void setZip(Integer zip) {
 		this.zip = zip;
 	}
-*/
+
 	
 	
 }
