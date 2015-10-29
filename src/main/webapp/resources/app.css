@@ -666,3 +666,8 @@ a {
   background-color: #eff4f6;
 }
 
+.logout{
+	
+	float: right;
+	display: block;
+}

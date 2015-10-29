@@ -1,6 +1,8 @@
 <div>
-<div  class="form-card" ng-controller="SignupCtrl as signup">
+<div  class="form-card" ng-controller="SignupCtrl as vm">
 	<h2>Sign Up</h2>
+	    <div ng-show="vm.error" class="alert alert-danger">{{vm.error}}</div>
+	
 	<form name="signupForm" ng-submit="vm.register()" role="form">
 
 		<div id="leftForm">

@@ -15,18 +15,15 @@
 
         return service;
 
-        function uLogin(user, pwd,callback) {
-
-              /* Use this for real authentication
-             ----------------------------------------------*/
-            $http.post('/eLearning/webservices/userlogin', { username: user, password: pwd })
-                .success(function (response) {
-                    callback(response);
+        
+        function uLogin(user, pwd) {
+            UserService.Login(user,pwd)
+                .then(function (response) {
+                   callback(response);
                 });
-
         }
-
-        function SetCredentials(username, password) {
+        
+       function SetCredentials(username, password) {
             var authdata = Base64.encode(username + ':' + password);
 
             $rootScope.globals = {

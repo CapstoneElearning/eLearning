@@ -23,6 +23,7 @@ function config($routeProvider,$locationProvider,$httpProvider,$urlRouterProvide
         
         })
         .state('login',{
+        	url:'/login',
             views: {    
             	'content': {
                     templateUrl: '../resources/modules/login/login.html' ,
@@ -32,9 +33,28 @@ function config($routeProvider,$locationProvider,$httpProvider,$urlRouterProvide
         })
         
         .state('signup',{
+        	url:'/signup',
             views: {              	
                 'content': {
                     templateUrl: '../resources/modules/signup/signup.html' ,
+                }
+            }
+        
+        })
+         .state('forgotPwd',{
+        	 url:'/forgotPwd',
+            views: {              
+                'content': {
+                    templateUrl: '../resources/modules/signup/forgot.html' ,
+                }
+            }
+        
+        })
+         .state('success',{
+        	 url:'/success',
+            views: {              	
+                'content': {
+                    templateUrl: '../resources/modules/signup/success.html' ,
                 }
             }
         
@@ -57,6 +77,15 @@ function config($routeProvider,$locationProvider,$httpProvider,$urlRouterProvide
             }
         
         })
+        
+          // Courses
+      .state('dashboard', {
+        url: '/dashboard',
+        views: {              
+            'content': {
+            	templateUrl: '../resources/modules/dashboard/dashboard.html',
+            }
+        }})
        
         // Courses
       .state('courses', {
