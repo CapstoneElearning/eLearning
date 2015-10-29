@@ -25,7 +25,7 @@
         }
 
         function GetById(id) {
-            return $http.get('/api/users/' + id).then(handleSuccess, handleError);
+            return $http.get('/eLearning/webservices/user/' + id).then(handleSuccess, handleError);
         }
 
         function Login(uname,pwd,callback) {

@@ -12,10 +12,11 @@
 					<input type="text" name="username" id="username"
 						placeholder="Username" class="form-control"
 						ng-model="vm.user.username" ng-minlength="6" ng-maxlength="45"
-						required />
+						required ensure-unique  ng-model-options="{ updateOn: 'blur' }" />
 					<div class="help-block" ng-messages="signupForm.username.$error"
 						ng-if="signupForm.username.$touched">
 						<div ng-message="required">username is required</div>
+						<div class="help-block" ng-show="signupForm.username.$error.unique">Username is already taken.</div>
 						<div
 							ng-messages-include="../resources/modules/signup/messages.html"></div>
 					</div>

@@ -17,7 +17,7 @@ function config($routeProvider,$locationProvider,$httpProvider,$urlRouterProvide
         	url:'/home',
             views: {
             	'courses': {
-                    templateUrl: '../resources/modules/partials/courses.html' 
+                    templateUrl: '../resources/modules/course/courses.html' 
                 }
             }
         
@@ -84,8 +84,13 @@ function config($routeProvider,$locationProvider,$httpProvider,$urlRouterProvide
         views: {              
             'content': {
             	templateUrl: '../resources/modules/dashboard/dashboard.html',
+            },
+            resolve:{
+                logincheck:checkLoggedin
             }
-        }})
+        }
+      
+      })
        
         // Courses
       .state('courses', {
@@ -115,6 +120,28 @@ function config($routeProvider,$locationProvider,$httpProvider,$urlRouterProvide
 }
 
 run.$inject = ['$rootScope', '$location', '$cookieStore', '$http'];
+
+var checkLoggedin=function checkLogin($q,$timeout,$http,$location,$rootScope,UserService){
+
+    var deferred=$q.defer();
+
+    UserService.Login(vm.username, vm.password).then(function(user) {
+    	$rootScope.errorMessage=null;
+        if(user.role_id !== 0)
+        {
+            $rootScope.currentUser = user;
+            $rootScope.currentUser.isAdmin = true;
+            deferred.resolve();
+        }else{
+            $rootScope.errorMessage='You need to log in.';
+            deferred.reject();
+            $location.url('/login')
+        }
+	});    
+
+    return deferred.promise;
+};
+
 function run($rootScope, $location, $cookieStore, $http) {
     // keep user logged in after page refresh
     $rootScope.globals = $cookieStore.get('globals') || {};

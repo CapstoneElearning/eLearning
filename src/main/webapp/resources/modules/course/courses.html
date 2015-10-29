@@ -1,26 +1,17 @@
-<div id="content-wrapper">
+<div id="content-wrapper" ng-controller="CourseCtrl">
 	<div id="footer" class="container">
 		<div id="fbox1">
 			<h2>Up coming Courses</h2>
 			<ul class="style3">
-				<li class="first">
+				<li class="first" ng-repeat="course in courses">
 					<p class="date">
-						<a href="#">Oct<b>15</b></a>
+						<a href="#"><b>{{course.startDate}}</b></a>
 					</p>
-					<h3>Computer Algorithms</h3>
+					<h3>{{course.category}}</h3>
 					<p>
-						<a href="#">Data Structures and Algorithms</a>
+						<a href="#">{{course.title}}</a>
 					</p>
-				</li>
-				<li>
-					<p class="date">
-						<a href="#">Oct<b>11</b></a>
-					</p>
-					<h3>Programming</h3>
-					<p>
-						<a href="#">Java and Internet Applications</a>
-					</p>
-				</li>
+				</li>				
 			</ul>
 		</div>		
 

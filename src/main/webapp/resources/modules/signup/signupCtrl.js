@@ -4,7 +4,26 @@
 'use strict';
 
 angular.module('myApp').controller('SignupCtrl', SignupCtrl);
-
+angular.module('myApp').directive('ensureUnique', function($timeout, $q, $http) {
+	 return {
+		    require: 'ngModel',
+		    link: function(scope, ele, attrs, c) {
+		      scope.$watch(attrs.ngModel, function() {
+		    	  var currentValue = ele.val();
+		    	  if(currentValue.length > 3){
+		    		  $http({
+				          method: 'GET',
+				          url: "/eLearning/webservices/user/isunique/" +currentValue
+				        }).success(function(data, status, headers, cfg) {
+				          c.$setValidity('unique', data);
+				        }).error(function(data, status, headers, cfg) {
+				          c.$setValidity('unique', false);
+				        });
+		    	  }
+		      });
+		    }
+		  }
+})
 SignupCtrl.$inject = [ 'UserService', '$location', '$rootScope',
 		'FlashService', '$state' ];
 function SignupCtrl(UserService, $location, $rootScope, FlashService, $state) {
