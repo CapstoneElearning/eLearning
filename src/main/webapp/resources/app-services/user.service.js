@@ -51,7 +51,7 @@
         }
 
         function Delete(id) {
-            return $http.delete('/eLearning/webservices/user/' + id).then(handleSuccess, handleError);
+//            return $http.delete('/eLearning/webservices/user/' + id).then(handleSuccess, handleError);
         }
 
         // private functions

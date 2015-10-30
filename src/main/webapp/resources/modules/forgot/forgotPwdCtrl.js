@@ -2,10 +2,10 @@
  * Created by KrishnaReddy on 10/16/2015.
  */
             'use strict';
-            angular.module('myApp').controller('LoginCtrl', LoginCtrl);
+            angular.module('myApp').controller('ForgotPwdCtrl', ForgotPwdCtrl);
 
-            LoginCtrl.$inject = ['$location', 'AuthenticationService', 'FlashService'];
-            function LoginCtrl($location, AuthenticationService, FlashService) {
+            ForgotPwdCtrl.$inject = ['$location', 'AuthenticationService', 'FlashService'];
+            function ForgotPwdCtrl($location, AuthenticationService, FlashService) {
                 var vm = this;
 
                 vm.resetPwd = resetPwd;

@@ -1,212 +1,227 @@
-<div>
-<div  class="form-card" ng-controller="SignupCtrl as vm">
-	<h2>Sign Up</h2>
-	    <div ng-show="vm.error" class="alert alert-danger">{{vm.error}}</div>
-	
-	<form name="signupForm" ng-submit="vm.register()" role="form">
+<div class="panel panel-info" ng-controller="LoginCtrl as vm">
+	<div class="panel-heading">
+		<h3 class="panel-title">Please Signup here</h3>
+	</div>
+	<div ng-show="vm.error" class="alert alert-danger">{{vm.error}}</div>
 
-		<div id="leftForm">
-			<fieldset>
-				<div class="form-group"
-					ng-class="{ 'has-error': signupForm.username.$invalid && signupForm.username.$touched}">
-					<input type="text" name="username" id="username"
-						placeholder="Username" class="form-control"
-						ng-model="vm.user.username" ng-minlength="6" ng-maxlength="45"
-						required ensure-unique  ng-model-options="{ updateOn: 'blur' }" />
-					<div class="help-block" ng-messages="signupForm.username.$error"
-						ng-if="signupForm.username.$touched">
-						<div ng-message="required">username is required</div>
-						<div class="help-block" ng-show="signupForm.username.$error.unique">Username is already taken.</div>
-						<div
-							ng-messages-include="../resources/modules/signup/messages.html"></div>
-					</div>
+	<div class="panel-body">
+		<div class="row form-card">
+				<h2>SignUp</h2>
+			<form name="signupForm" ng-submit="vm.register()" role="form">
+
+				<div class="col-md-6">
+					<fieldset>
+						<div class="form-group"
+							ng-class="{ 'has-error': signupForm.username.$invalid && signupForm.username.$touched}">
+							<input type="text" name="username" id="username"
+								placeholder="Username" class="form-control"
+								ng-model="vm.user.username" ng-minlength="6" ng-maxlength="45"
+								required ensure-unique ng-model-options="{ updateOn: 'blur' }" />
+							<div class="help-block" ng-messages="signupForm.username.$error"
+								ng-if="signupForm.username.$touched">
+								<div ng-message="required">username is required</div>
+								<div class="help-block"
+									ng-show="signupForm.username.$error.unique">Username is
+									already taken.</div>
+								<div
+									ng-messages-include="../resources/modules/signup/messages.html"></div>
+							</div>
+						</div>
+						<div class="form-group"
+							ng-class="{ 'has-error': signupForm.password.$invalid && signupForm.password.$touched }">
+							<input type="password" name="password" id="password"
+								placeholder="Password" class="form-control"
+								ng-model="vm.user.password" ng-minlength="6" ng-maxlength="20"
+								required />
+							<div class="help-block" ng-messages="signupForm.password.$error"
+								ng-if="signupForm.password.$touched">
+								<div
+									ng-messages-include="../resources/modules/signup/messages.html"></div>
+							</div>
+						</div>
+
+						<div class="form-group"
+							ng-class="{ 'has-error': signupForm.fname.$invalid && signupForm.fname.$touched}">
+							<input type="text" name="fname" id="fname"
+								placeholder="First Name" class="form-control"
+								ng-model="vm.user.fname" ng-minlength="6" ng-maxlength="30"
+								required />
+							<div class="help-block" ng-messages="signupForm.fname.$error"
+								ng-if="signupForm.fname.$touched">
+								<div
+									ng-messages-include="../resources/modules/signup/messages.html"></div>
+							</div>
+						</div>
+						<div class="form-group">
+							<input type="text" name="mname" id="mname"
+								placeholder="Middle Name" class="form-control"
+								ng-model="vm.user.mname" required />
+						</div>
+						<div class="form-group"
+							ng-class="{ 'has-error': signupForm.lname.$invalid && signupForm.lname.$touched }">
+							<input type="text" name="lname" id="lname"
+								placeholder="Last Name" class="form-control"
+								ng-model="vm.user.lname" ng-minlength="6" ng-maxlength="30"
+								required />
+							<div class="help-block" ng-messages="signupForm.lname.$error"
+								ng-if="signupForm.lname.$touched">
+								<div
+									ng-messages-include="../resources/modules/signup/messages.html"></div>
+							</div>
+						</div>
+
+						<div class="form-group"
+							ng-class="{ 'has-error': signupForm.email.$invalid && signupForm.email.$touched}">
+							<input type="text" name="email" id="email" placeholder="Email"
+								class="form-control" ng-model="vm.user.email" ng-minlength="10"
+								ng-minlength="45" required />
+
+							<div class="help-block" ng-messages="signupForm.email.$error"
+								ng-if="signupForm.email.$touched">
+								<div
+									ng-messages-include="../resources/modules/signup/messages.html"></div>
+							</div>
+
+						</div>
+
+						<div>
+							<div class="radio">
+								<label><input class="radio-inline" type="radio"
+									name="sex" value="F" checked />Female</label> <label><input
+									class="radio-inline" type="radio" name="sex" value="F" checked />Male</label>
+							</div>
+						</div>
+
+						<div class="form-group"
+							ng-class="{ 'has-error': signupForm.dob.$invalid && signupForm.dob.$touched }">
+							<input type="date" name="dob" id="dob" placeholder="DOB"
+								class="form-control" ng-model="vm.user.dob" required />
+							<div class="help-block" ng-messages="signupForm.dob.$error"
+								ng-if="signupForm.dob.$touched">
+								<div
+									ng-messages-include="../resources/modules/signup/messages.html"></div>
+							</div>
+						</div>
+						<div class="form-group">
+							<input type="tel" name="phone_home" id="phone_home"
+								placeholder="Phone Home" class="form-control"
+								ng-model="vm.user.phone_home" />
+						</div>
+					</fieldset>
+
 				</div>
-				<div class="form-group"
-					ng-class="{ 'has-error': signupForm.password.$invalid && signupForm.password.$touched }">
-					<input type="password" name="password" id="password"
-						placeholder="Password" class="form-control"
-						ng-model="vm.user.password" ng-minlength="6" ng-maxlength="20"	required />
-					<div class="help-block" ng-messages="signupForm.password.$error"
-						ng-if="signupForm.password.$touched">
-						<div
-							ng-messages-include="../resources/modules/signup/messages.html"></div>
-					</div>
+				<div class="col-md-6">
+					<fieldset>
+						<div class="form-group"
+							ng-class="{ 'has-error': signupForm.phone_cell.$invalid && signupForm.phone_cell.$touched}">
+							<input type="tel" name="phone_cell" id="phone_cell"
+								placeholder="Phone Cell" class="form-control"
+								ng-model="vm.user.phone_cell" ng-pattern="phoneNumberPattern"
+								required />
+							<div class="help-block"
+								ng-messages="signupForm.phone_cell.$error"
+								ng-if="signupForm.phone_cell.$touched">
+								<div
+									ng-messages-include="../resources/modules/signup/messages.html"></div>
+							</div>
+						</div>
+						<div class="form-group"
+							ng-class="{ 'has-error': signupForm.address1.$touched && signupForm.address1.$error }">
+							<input type="text" name="address1" id="address1"
+								placeholder="Address1" class="form-control"
+								ng-model="vm.user.address1" required />
+							<div class="help-block" ng-messages="signupForm.address1.$error"
+								ng-if="signupForm.address1.$touched">
+								<div
+									ng-messages-include="../resources/modules/signup/messages.html"></div>
+							</div>
+						</div>
+						<div class="form-group">
+							<input type="text" name="address2" id="address2"
+								placeholder="Address 2" class="form-control"
+								ng-model="vm.user.address2" required />
+						</div>
+
+						<div class="form-group"
+							ng-class="{ 'has-error': signupForm.city.$touched && signupForm.city.$error }">
+							<input type="text" name="city" id="city" placeholder="City"
+								class="form-control" ng-model="vm.user.city" required />
+							<div class="help-block" ng-messages="signupForm.city.$error"
+								ng-if="signupForm.city.$touched">
+								<div
+									ng-messages-include="../resources/modules/signup/messages.html"></div>
+							</div>
+						</div>
+						<div class="form-group"
+							ng-class="{ 'has-error': signupForm.state.$touched && signupForm.state.$error }">
+							<input type="text" name="state" id="state" placeholder="State"
+								class="form-control" ng-model="vm.user.state" required />
+							<div class="help-block" ng-messages="signupForm.state.$error"
+								ng-if="signupForm.state.$touched">
+								<div
+									ng-messages-include="../resources/modules/signup/messages.html"></div>
+							</div>
+						</div>
+						<div class="form-group"
+							ng-class="{ 'has-error': signupForm.zip.$touched && signupForm.zip.$error }">
+							<input type="text" name="zip" id="zip" placeholder="Zip"
+								class="form-control" ng-model="vm.user.zip" required />
+
+							<div class="help-block" ng-messages="signupForm.zip.$error"
+								ng-if="signupForm.zip.$touched">
+								<div
+									ng-messages-include="../resources/modules/signup/messages.html"></div>
+							</div>
+
+						</div>
+						<div class="form-group"
+							ng-class="{ 'has-error': signupForm.country.$touched && signupForm.country.$error }">
+							<input type="text" name="country" id="country"
+								placeholder="Country" class="form-control"
+								ng-model="vm.user.country" required />
+							<div class="help-block" ng-messages="signupForm.country.$error"
+								ng-if="signupForm.country.$touched">
+								<div
+									ng-messages-include="../resources/modules/signup/messages.html"></div>
+							</div>
+						</div>
+						<div>
+							<label for="securityQ"> <select id="pwd_hint"
+								class="form-control" required="required">
+									<option value="">Security Hint Question</option>
+									<option value="0">Mothers middle name?</option>
+									<option value="1">Your favorite Professor middle name?</option>
+									<option value="2">Your favorite subject name?</option>
+							</select></label>
+						</div>
+						<div class="form-group"
+							ng-class="{ 'has-error': signupForm.pwd_hint_ans.$dirty && signupForm.pwd_hint_ans.$error}">
+							<input type="text" name="pwd_hint_ans" id="pwd_hint_ans"
+								placeholder="Password Hint" class="form-control"
+								ng-model="vm.user.pwd_hint_ans" required />
+							<div class="help-block"
+								ng-messages="signupForm.pwd_hint_ans.$error"
+								ng-if="signupForm.pwd_hint_ans.$touched">
+								<div
+									ng-messages-include="../resources/modules/signup/messages.html"></div>
+							</div>
+						</div>
+					</fieldset>
 				</div>
 
-				<div class="form-group"
-					ng-class="{ 'has-error': signupForm.fname.$invalid && signupForm.fname.$touched}">
-					<input type="text" name="fname" id="fname" placeholder="First Name"
-						class="form-control" ng-model="vm.user.fname" ng-minlength="6"
-						ng-maxlength="30" required />
-					<div class="help-block" ng-messages="signupForm.fname.$error"
-						ng-if="signupForm.fname.$touched">
-						<div
-							ng-messages-include="../resources/modules/signup/messages.html"></div>
-					</div>
-				</div>
-				<div class="form-group">
-					<input type="text" name="mname" id="mname"
-						placeholder="Middle Name" class="form-control"
-						ng-model="vm.user.mname" required />
-				</div>
-				<div class="form-group"
-					ng-class="{ 'has-error': signupForm.lname.$invalid && signupForm.lname.$touched }">
-					<input type="text" name="lname" id="lname" placeholder="Last Name"
-						class="form-control" ng-model="vm.user.lname" ng-minlength="6"
-						ng-maxlength="30" required />
-					<div class="help-block" ng-messages="signupForm.lname.$error"
-						ng-if="signupForm.lname.$touched">
-						<div
-							ng-messages-include="../resources/modules/signup/messages.html"></div>
-					</div>
+				<div id="bottomForm">
+					<button type="submit"
+						ng-disabled="signupForm.$invalid || vm.dataLoading"
+						class="btn btn-primary">Register</button>
+					<img ng-if="vm.dataLoading"
+						src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+					<button type="submit" class="btn btn-primary"
+						ng-click="vm.cancel()">Cancel</button>
 				</div>
 
-				<div class="form-group"
-					ng-class="{ 'has-error': signupForm.email.$invalid && signupForm.email.$touched}">
-					<input type="text" name="email" id="email" placeholder="Email"
-						class="form-control" ng-model="vm.user.email" ng-minlength="10" ng-minlength="45" required />
 
-					<div class="help-block" ng-messages="signupForm.email.$error"
-						ng-if="signupForm.email.$touched">
-						<div
-							ng-messages-include="../resources/modules/signup/messages.html"></div>
-					</div>
-
-				</div>
-
-				<div>
-					<div class="radio">
-						<label><input class="radio-inline" type="radio" name="sex"
-							value="F" checked />Female</label> <label><input
-							class="radio-inline" type="radio" name="sex" value="F" checked />Male</label>
-					</div>
-				</div>
-
-				<div class="form-group"
-					ng-class="{ 'has-error': signupForm.dob.$invalid && signupForm.dob.$touched }">
-					<input type="date" name="dob" id="dob" placeholder="DOB"
-						class="form-control" ng-model="vm.user.dob" required />
-						<div class="help-block" ng-messages="signupForm.dob.$error"
-						ng-if="signupForm.dob.$touched">
-						<div
-							ng-messages-include="../resources/modules/signup/messages.html"></div>
-					</div>
-				</div>
-				<div class="form-group">
-					<input type="text" name="phone_home" id="phone_home"
-						placeholder="Phone Home" class="form-control"
-						ng-model="vm.user.phone_home" />						
-				</div>
-
-				<div class="form-group"
-					ng-class="{ 'has-error': signupForm.phone_cell.$invalid && signupForm.phone_cell.$touched}">
-					<input type="text" name="phone_cell" id="phone_cell"
-						placeholder="Phone Cell" class="form-control"
-						ng-model="vm.user.phone_cell" ng-pattern="phoneNumberPattern" required />						
-						<div class="help-block" ng-messages="signupForm.phone_cell.$error"
-						ng-if="signupForm.phone_cell.$touched">
-						<div
-							ng-messages-include="../resources/modules/signup/messages.html"></div>
-					</div>					 
-				</div>
-			</fieldset>
-
+			</form>
 		</div>
-		<div id="rightForm">
-			<fieldset>
-				<div class="form-group"
-					ng-class="{ 'has-error': signupForm.address1.$touched && signupForm.address1.$error }">
-					<input type="text" name="address1" id="address1"
-						placeholder="Address1" class="form-control"
-						ng-model="vm.user.address1" required /> 
-						<div class="help-block" ng-messages="signupForm.address1.$error"
-						ng-if="signupForm.address1.$touched">
-						<div
-							ng-messages-include="../resources/modules/signup/messages.html"></div>
-					</div>	
-				</div>
-				<div class="form-group">
-					<input type="text" name="address2" id="address2"
-						placeholder="Address 2" class="form-control"
-						ng-model="vm.user.address2" required />
-				</div>
-
-				<div class="form-group"
-					ng-class="{ 'has-error': signupForm.city.$touched && signupForm.city.$error }">
-					<input type="text" name="city" id="city" placeholder="City"
-						class="form-control" ng-model="vm.user.city" required /> 
-						<div class="help-block" ng-messages="signupForm.city.$error"
-						ng-if="signupForm.city.$touched">
-						<div
-							ng-messages-include="../resources/modules/signup/messages.html"></div>
-					</div>
-				</div>
-				<div class="form-group"
-					ng-class="{ 'has-error': signupForm.state.$touched && signupForm.state.$error }">
-					<input type="text" name="state" id="state" placeholder="State"
-						class="form-control" ng-model="vm.user.state" required /> 
-						<div class="help-block" ng-messages="signupForm.state.$error"
-						ng-if="signupForm.state.$touched">
-						<div
-							ng-messages-include="../resources/modules/signup/messages.html"></div>
-					</div>
-				</div>
-				<div class="form-group"
-					ng-class="{ 'has-error': signupForm.zip.$touched && signupForm.zip.$error }">
-					<input type="text" name="zip" id="zip" placeholder="Zip"
-						class="form-control" ng-model="vm.user.zip" required />
-						
-						<div class="help-block" ng-messages="signupForm.zip.$error"
-						ng-if="signupForm.zip.$touched">
-						<div
-							ng-messages-include="../resources/modules/signup/messages.html"></div>
-					</div>
-					
-				</div>
-				<div class="form-group"
-					ng-class="{ 'has-error': signupForm.country.$touched && signupForm.country.$error }">
-					<input type="text" name="country" id="country"
-						placeholder="Country" class="form-control"
-						ng-model="vm.user.country" required /> 
-						<div class="help-block" ng-messages="signupForm.country.$error"
-						ng-if="signupForm.country.$touched">
-						<div
-							ng-messages-include="../resources/modules/signup/messages.html"></div>
-					</div>
-				</div>
-				<div>
-					<label for="securityQ"> <select id="pwd_hint"
-						class="form-control" required="required">
-							<option value="">Security Hint Question</option>
-							<option value="0">Mothers middle name?</option>
-							<option value="1">Your favorite Professor middle name?</option>
-							<option value="2">Your favorite subject name?</option>
-					</select></label>
-				</div>
-				<div class="form-group"
-					ng-class="{ 'has-error': signupForm.pwd_hint_ans.$dirty && signupForm.pwd_hint_ans.$error}">
-					<input type="text" name="pwd_hint_ans" id="pwd_hint_ans"
-						placeholder="Password Hint" class="form-control"
-						ng-model="vm.user.pwd_hint_ans" required />
-						<div class="help-block" ng-messages="signupForm.pwd_hint_ans.$error"
-						ng-if="signupForm.pwd_hint_ans.$touched">
-						<div
-							ng-messages-include="../resources/modules/signup/messages.html"></div>
-					</div>
-				</div>
-			</fieldset>
-		</div>
-
-		<div id="bottomForm">
-			<button type="submit"
-				ng-disabled="signupForm.$invalid || vm.dataLoading"
-				class="btn btn-primary">Register</button>
-			<img ng-if="vm.dataLoading"
-				src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-			<button type="submit" class="btn btn-primary" ng-click="vm.cancel()">Cancel</button>
-		</div>
-
-
-	</form>
+	</div>
 </div>
-</div>
+

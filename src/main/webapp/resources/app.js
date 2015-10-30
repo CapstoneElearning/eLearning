@@ -45,7 +45,7 @@ function config($routeProvider,$locationProvider,$httpProvider,$urlRouterProvide
         	 url:'/forgotPwd',
             views: {              
                 'content': {
-                    templateUrl: '../resources/modules/signup/forgot.html' ,
+                    templateUrl: '../resources/modules/forgot/forgot.html' ,
                 }
             }
         

@@ -1,42 +1,74 @@
-<div class="form-card" ng-controller="LoginCtrl as vm">
-    <div ng-show="vm.error" class="alert alert-danger">{{vm.error}}</div>
-    <div class="col-md-6 col-md-offset-3">
-		<h2>Login</h2>
-		<form name="loginForm" ng-submit="vm.login()" role="form">
-			<div class="form-group"
-					ng-class="{ 'has-error': loginForm.username.$invalid && loginForm.username.$touched}">
-					<input type="text" name="username" id="username"
-						placeholder="Username" class="form-control"
-						ng-model="vm.user.username" ng-minlength="6" ng-maxlength="45"
-						required />
-					<div class="help-block" ng-messages="loginForm.username.$error"
-						ng-if="loginForm.username.$touched">
-						<div ng-message="required">username is required</div>
-						<div
-							ng-messages-include="../resources/modules/signup/messages.html"></div>
-					</div>
+<div class="panel panel-info" ng-controller="LoginCtrl as vm">
+	<div class="panel-heading">
+		<h3 class="panel-title">Please Sign In</h3>
+	</div>
+	<div ng-show="vm.error" class="alert alert-danger">{{vm.error}}</div>
+
+	<div class="panel-body">
+		<div class="row ">
+
+			<div class="form-card">
+				<h2>Login</h2>
+
+				<div class="col-md-5">
+					<a href="#"><img src="images/fb.png" /></a><br /> <a href="#"><img
+						src="images/tw.png" /></a><br /> <a href="#"><img
+						src="images/gplus.png" /></a>
 				</div>
-				<div class="form-group"
-					ng-class="{ 'has-error': loginForm.password.$invalid && loginForm.password.$touched }">
-					<input type="password" name="password" id="password"
-						placeholder="Password" class="form-control"
-						ng-model="vm.user.password" ng-minlength="6" ng-maxlength="20"	required />
-					<div class="help-block" ng-messages="loginForm.password.$error"
-						ng-if="loginForm.password.$touched">
-						<div ng-message="required">password is required</div>
+
+				<div class="col-md-7"
+					style="border-left: 1px solid #ccc; height: auto !important">
+					<form name="loginForm" ng-submit="vm.login()" role="form">
+
+						<div class="form-group ">
+							<!-- <span class="input-group-addon"><i class="fa fa-user"></i></span> -->
+							<input type="text" name="username" id="username"
+								placeholder="Username" class="form-control input-md"
+								ng-model="vm.user.username" ng-minlength="6" ng-maxlength="20"
+								required />
+						</div>
 						<div
-							ng-messages-include="../resources/modules/signup/messages.html"></div>
-					</div>
+							ng-class="{ 'has-error': loginForm.username.$invalid && loginForm.username.$touched}">
+							<div class="help-block" ng-messages="loginForm.username.$error"
+								ng-if="loginForm.username.$touched">
+								<div class="alert alert-danger" ng-message="required">username
+									is required</div>
+								<div
+									ng-messages-include="../resources/modules/signup/messages.html"></div>
+							</div>
+						</div>
+						<div class="form-group">
+							<!-- <span class="input-group-addon"><i class="fa fa-lock"></i></span> -->
+							<input type="password" name="password" id="password"
+								placeholder="Password" class="form-control input-md"
+								ng-model="vm.user.password" ng-minlength="6" ng-maxlength="20"
+								required />
+						</div>
+						<div
+							ng-class="{ 'has-error': loginForm.password.$invalid && loginForm.password.$touched }">
+							<div class="help-block" ng-messages="loginForm.password.$error"
+								ng-if="loginForm.password.$touched">
+								<div class="alert alert-danger" ng-message="required">password
+									is required</div>
+								<div
+									ng-messages-include="../resources/modules/signup/messages.html"></div>
+							</div>
+						</div>
+						<div class="form-actions">
+							<button type="submit"
+								ng-disabled="form.$invalid || vm.dataLoading"
+								class="btn btn-block btn-lg btn-primary btn-loading">Login</button>
+							<img ng-if="vm.dataLoading"
+								src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
+							<a ui-sref="forgotPwd" class="btn btn-link btn-xs ellipsis">Forgot
+								password?</a> <a ui-sref="signup"
+								class="btn btn-link btn-xs ellipsis">Create new account</a>
+						</div>
+					</form>
 				</div>
-			<div class="form-actions">
-				<button type="submit" ng-disabled="form.$invalid || vm.dataLoading"
-					class="btn btn-block btn-lg btn-primary btn-loading">Login</button>
-				<img ng-if="vm.dataLoading"
-					src="data:image/gif;base64,R0lGODlhEAAQAPIAAP///wAAAMLCwkJCQgAAAGJiYoKCgpKSkiH/C05FVFNDQVBFMi4wAwEAAAAh/hpDcmVhdGVkIHdpdGggYWpheGxvYWQuaW5mbwAh+QQJCgAAACwAAAAAEAAQAAADMwi63P4wyklrE2MIOggZnAdOmGYJRbExwroUmcG2LmDEwnHQLVsYOd2mBzkYDAdKa+dIAAAh+QQJCgAAACwAAAAAEAAQAAADNAi63P5OjCEgG4QMu7DmikRxQlFUYDEZIGBMRVsaqHwctXXf7WEYB4Ag1xjihkMZsiUkKhIAIfkECQoAAAAsAAAAABAAEAAAAzYIujIjK8pByJDMlFYvBoVjHA70GU7xSUJhmKtwHPAKzLO9HMaoKwJZ7Rf8AYPDDzKpZBqfvwQAIfkECQoAAAAsAAAAABAAEAAAAzMIumIlK8oyhpHsnFZfhYumCYUhDAQxRIdhHBGqRoKw0R8DYlJd8z0fMDgsGo/IpHI5TAAAIfkECQoAAAAsAAAAABAAEAAAAzIIunInK0rnZBTwGPNMgQwmdsNgXGJUlIWEuR5oWUIpz8pAEAMe6TwfwyYsGo/IpFKSAAAh+QQJCgAAACwAAAAAEAAQAAADMwi6IMKQORfjdOe82p4wGccc4CEuQradylesojEMBgsUc2G7sDX3lQGBMLAJibufbSlKAAAh+QQJCgAAACwAAAAAEAAQAAADMgi63P7wCRHZnFVdmgHu2nFwlWCI3WGc3TSWhUFGxTAUkGCbtgENBMJAEJsxgMLWzpEAACH5BAkKAAAALAAAAAAQABAAAAMyCLrc/jDKSatlQtScKdceCAjDII7HcQ4EMTCpyrCuUBjCYRgHVtqlAiB1YhiCnlsRkAAAOwAAAAAAAAAAAA==" />
-				<a ui-sref="forgotPwd" class="btn btn-link btn-xs ellipsis">Forgot
-					password?</a> <a ui-sref="signup" class="btn btn-link btn-xs ellipsis">Create
-					new account</a>
-			</div>			
-		</form>
+			</div>
+
+		</div>
+
 	</div>
 </div>
