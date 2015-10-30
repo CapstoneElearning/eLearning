@@ -1,6 +1,5 @@
 package com.capstone.eLearning.services.impl;
 
-
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,15 +19,17 @@ public class CourseSearchServiceImpl implements CourseSearchService {
 	private CourseDao courseDao;
 	
 	@Override
-	public List<Course> findCoursesByCourseName(String courseName) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Course> findCoursesByProgramName(String programName) {
+		return courseDao.findCoursesByProgramName(programName);
 	}
 
 	@Override
 	public List<Course> findCoursesByDeptName(String deptName) {
-		// TODO Auto-generated method stub
-		return null;
+		return courseDao.findCoursesByDeptName(deptName);
 	}
 
+	@Override
+	public List<Course> findCoursesBySubjectName(String subjectName) {
+		return courseDao.findCoursesBySubjectName(subjectName);
+	}
 }
