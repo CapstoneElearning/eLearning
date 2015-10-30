@@ -23,88 +23,88 @@ public class SearchController {
 	@Autowired
 	@Qualifier("courseSearchServiceImpl")
 	private CourseSearchService courseSearchService;
-    
-    /*
-     * Search for courses by program name
-     */
-    @RequestMapping(value="/program/{search_term}", method=RequestMethod.GET)
-    public @ResponseBody String searchByProgramName(
-    		@PathVariable(value="search_term") String search_term) {
-    	if (StringUtils.isEmpty(search_term)) {
-    	    return "Search program name is empty!";
-    	}
 
-    	String unescapedText = StringEscapeUtils.unescapeJava(search_term);
-    	logger.info("Searching with program name: " + unescapedText);
-    	StringBuffer result = new StringBuffer("");
-    	List<Course> courses = courseSearchService.findCoursesByProgramName(unescapedText);
-    	
-    	if (courses != null) {
-    		for (Course course : courses) {
-    			result.append(course);
-    		}
-    	}
-    	
-    	if (StringUtils.isEmpty(result.toString())) {
-    		return "No result found!";
-    	}
+	/*
+	 * Search for courses by program name
+	 */
+	@RequestMapping(value="/program/{search_term}", method=RequestMethod.GET)
+	public @ResponseBody String searchByProgramName(
+			@PathVariable(value="search_term") String search_term) {
+		if (StringUtils.isEmpty(search_term)) {
+			return "Search program name is empty!";
+		}
 
-    	return result.toString();
-    }
-    
-    /*
-     * Search for courses by dept name
-     */
-    @RequestMapping(value="/department/{search_term}", method=RequestMethod.GET)
-    public @ResponseBody String searchByDepartmentName(
-    		@PathVariable(value="search_term") String search_term) {
-    	if (StringUtils.isEmpty(search_term)) {
-    	    return "Search department name is empty!";
-    	}
+		String unescapedText = StringEscapeUtils.unescapeJava(search_term);
+		logger.info("Searching with program name: " + unescapedText);
+		StringBuffer result = new StringBuffer("");
+		List<Course> courses = courseSearchService.findCoursesByProgramName(unescapedText);
 
-    	String unescapedText = StringEscapeUtils.unescapeJava(search_term);
-    	logger.info("Searching with department name: " + unescapedText);
-    	StringBuffer result = new StringBuffer("");
-    	List<Course> courses = courseSearchService.findCoursesByDeptName(unescapedText);
-    	
-    	if (courses != null) {
-    		for (Course course : courses) {
-    			result.append(course);
-    		}
-    	}
-    	
-    	if (StringUtils.isEmpty(result.toString())) {
-    		return "No result found!";
-    	}
+		if (courses != null) {
+			for (Course course : courses) {
+				result.append(course);
+			}
+		}
 
-    	return result.toString();
-    }
-    
-    /*
-     * Search for courses by subject name
-     */
-    @RequestMapping(value="/subject/{search_term}", method=RequestMethod.GET)
-    public @ResponseBody String searchBySubjectName(
-    		@PathVariable("search_term") String search_term) {
-    	if (StringUtils.isEmpty(search_term)) {
-    	    return "Search subject name is empty!";
-    	}
+		if (StringUtils.isEmpty(result.toString())) {
+			return "No result found!";
+		}
 
-    	String unescapedText = StringEscapeUtils.unescapeJava(search_term);
-    	logger.info("Searching with subject name: " + unescapedText);
-    	StringBuffer result = new StringBuffer("");
-    	List<Course> courses = courseSearchService.findCoursesBySubjectName(unescapedText);
-    	
-    	if (courses != null) {
-    		for (Course course : courses) {
-    			result.append(course);
-    		}
-    	}
-    	
-    	if (StringUtils.isEmpty(result.toString())) {
-    		return "No result found!";
-    	}
+		return result.toString();
+	}
 
-    	return result.toString();
-    }
+	/*
+	 * Search for courses by dept name
+	 */
+	@RequestMapping(value="/department/{search_term}", method=RequestMethod.GET)
+	public @ResponseBody String searchByDepartmentName(
+			@PathVariable(value="search_term") String search_term) {
+		if (StringUtils.isEmpty(search_term)) {
+			return "Search department name is empty!";
+		}
+
+		String unescapedText = StringEscapeUtils.unescapeJava(search_term);
+		logger.info("Searching with department name: " + unescapedText);
+		StringBuffer result = new StringBuffer("");
+		List<Course> courses = courseSearchService.findCoursesByDeptName(unescapedText);
+
+		if (courses != null) {
+			for (Course course : courses) {
+				result.append(course);
+			}
+		}
+
+		if (StringUtils.isEmpty(result.toString())) {
+			return "No result found!";
+		}
+
+		return result.toString();
+	}
+
+	/*
+	 * Search for courses by subject name
+	 */
+	@RequestMapping(value="/subject/{search_term}", method=RequestMethod.GET)
+	public @ResponseBody String searchBySubjectName(
+			@PathVariable("search_term") String search_term) {
+		if (StringUtils.isEmpty(search_term)) {
+			return "Search subject name is empty!";
+		}
+
+		String unescapedText = StringEscapeUtils.unescapeJava(search_term);
+		logger.info("Searching with subject name: " + unescapedText);
+		StringBuffer result = new StringBuffer("");
+		List<Course> courses = courseSearchService.findCoursesBySubjectName(unescapedText);
+
+		if (courses != null) {
+			for (Course course : courses) {
+				result.append(course);
+			}
+		}
+
+		if (StringUtils.isEmpty(result.toString())) {
+			return "No result found!";
+		}
+
+		return result.toString();
+	}
 }
