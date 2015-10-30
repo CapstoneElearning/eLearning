@@ -26,14 +26,14 @@
         function loadCurrentUser() {
             UserService.GetByUsername($rootScope.globals.currentUser.username)
                 .then(function (user) {
-                    vm.user = user;
+                    vm.user = user.data;
                 });
         }
 
         function loadAllUsers() {
             UserService.GetAll()
                 .then(function (users) {
-                    vm.allUsers = users;
+                    vm.allUsers = users.data;
                 });
         }
 

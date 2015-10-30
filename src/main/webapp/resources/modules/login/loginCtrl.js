@@ -19,10 +19,10 @@ function LoginCtrl(UserService, $location, AuthenticationService, FlashService,
 
 	function login() {
 		vm.dataLoading = true;
-		UserService.Login(vm.username, vm.password).then(function(response) {
+		UserService.Login(vm.user.username, vm.user.password).then(function(response) {
 			if (response.success) {
 				FlashService.Success('Registration successful', true);
-				AuthenticationService.SetCredentials(vm.username, vm.password);
+				AuthenticationService.SetCredentials(vm.user.username, vm.user.password);
 				$state.go('dashboard');
 			} else {
 				FlashService.Error("Invalid username or password");

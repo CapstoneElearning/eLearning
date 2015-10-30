@@ -10,8 +10,6 @@ angular
 
 config.$inject = ['$routeProvider', '$locationProvider','$httpProvider','$urlRouterProvider','$stateProvider'];
 function config($routeProvider,$locationProvider,$httpProvider,$urlRouterProvider,$stateProvider){
-	$urlRouterProvider.otherwise('/home');
-
     $stateProvider
         .state('home',{
         	url:'/home',
@@ -114,6 +112,8 @@ function config($routeProvider,$locationProvider,$httpProvider,$urlRouterProvide
         templateUrl: '../resources/modules/course/Course-edit.html',
         controller: 'EditCourseCtrl'
       });
+    
+	$urlRouterProvider.otherwise('/home');
 
     $httpProvider.defaults.useXDomain = true;
     delete $httpProvider.defaults.headers.common['X-Requested-With'];
@@ -153,7 +153,9 @@ function run($rootScope, $location, $cookieStore, $http) {
         // redirect to login page if not logged in and trying to access a restricted page
         var restrictedPage = $.inArray($location.path(), ['/home','/login', '/signup','/about','/contact','/success']) === -1;
         var loggedIn = $rootScope.globals.currentUser;
-        if (restrictedPage && !loggedIn) {
+        if($location.path()==""){
+        	$location.path('/home');
+        }else if (restrictedPage && !loggedIn) {
             $location.path('/login');
         }
     });
