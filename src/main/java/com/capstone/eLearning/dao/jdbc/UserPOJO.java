@@ -31,7 +31,7 @@ public class UserPOJO implements RowMapper {
         user.setPwd_hint(rs.getString("pwd_hint"));
         user.setRegistered_on(rs.getDate("registered_on"));
         user.setRole_id(rs.getInt("role_id"));
-       // user.setZip(rs.getInt("zip"));
+        user.setZip(rs.getInt("zip"));
         user.setState(rs.getString("state"));
         
 		return user;
