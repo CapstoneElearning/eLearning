@@ -25,7 +25,7 @@ angular
 								title : "Data Structures and Algorithms",
 								startDate : "Nov 15"
 							}, {
-								category : "Computer Science",
+								category : "Computer Engineering",
 								courseId : "480",
 								title : "Java and Internet Applications",
 								startDate : "Nov 01"
@@ -35,11 +35,16 @@ angular
 								title : "Advanced Java and Web Applications",
 								startDate : "Nov 25"
 							}, {
-								category : "Computer Science",
+								category : "Computer Engineering",
 								courseId : "101",
 								title : "Network Security",
 								startDate : "Nov 12"
 							}, {
+								category : "Computer Science",
+								courseId : "401",
+								title : "Software Quality and Test Automation",
+								startDate : "Nov 15"
+							},{
 								category : "Computer Science",
 								courseId : "401",
 								title : "Software Quality and Test Automation",
@@ -105,14 +110,8 @@ angular
 						} ])
 
 		// / Edit
-		.controller(
-				'EditCourseCtrl',
-				[
-						'$scope',
-						'$state',
-						'$filter',
-						'$stateParams',
-						'Course',
+		.controller('EditCourseCtrl',
+				['$scope','$state','$filter','$stateParams','Course',
 						function($scope, $state, $filter, $stateParams, Course) {
 
 							$scope.Course = {};

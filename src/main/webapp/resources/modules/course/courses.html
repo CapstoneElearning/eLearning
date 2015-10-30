@@ -1,19 +1,21 @@
-<div id="content-wrapper" ng-controller="CourseCtrl">
-	<div id="footer" class="container">
-		<div id="fbox1">
-			<h2>Up coming Courses</h2>
+<div class="panel panel-info">
+	<div class="panel-heading">
+		<h3 class="panel-title">Up coming Courses</h3>
+	</div>
+	<div ng-show="vm.error" class="alert alert-danger">{{vm.error}}</div>
+
+	<div class="panel-body" ng-controller="CourseCtrl">
+		<div class="row">
 			<ul class="style3">
 				<li class="first" ng-repeat="course in courses">
 					<p class="date">
-						<a href="#"><b>{{course.startDate}}</b></a>
+						<a href="#">{{course.startDate}}</a>
 					</p>
-					<h3>{{course.category}}</h3>
-					<p>
-						<a href="#">{{course.title}}</a>
-					</p>
-				</li>				
+					<h3>{{course.category}}</h3> <a href="#">{{course.title}}</a>
+
+				</li>
 			</ul>
-		</div>		
+		</div>
 
 	</div>
 </div>
