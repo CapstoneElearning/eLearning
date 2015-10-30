@@ -1,11 +1,9 @@
-<div id="banner-wrapper">
-	<div id="banner" class="container">
-		<div class="boxA">
-			<form name="search-form" action="/courses" method="get">
-				<input type="text" placeholder="Search for Courses" size="30">
-				<a href="#" class="button">Submit</a>
-			</form>
-
-		</div>
+<div class="slider">
+	<div class="slide" ng-repeat="image in images" ng-show="image.visible">
+		<img ng-src="images/slider/{{image.src}}"/>
+	</div>
+	<div class="arrows">
+		<a href="#" ng-click="prev()"><img src="images/slider/left-arrow.png"/></a> 
+		<a href="#" ng-click="next()"><img src="images/slider/right-arrow.png"/></a>
 	</div>
 </div>
