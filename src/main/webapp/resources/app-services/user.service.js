@@ -17,7 +17,6 @@
         service.Update = Update;
         service.Delete = Delete;
         service.resetPwd = resetPwd;
-
         return service;
 
         function GetAll() {

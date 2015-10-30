@@ -1,7 +1,6 @@
 package com.capstone.eLearning.resthandler;
 
 import java.util.List;
-
 import javax.ws.rs.Consumes;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
@@ -9,6 +8,7 @@ import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.WebApplicationException;
+
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.Response.Status;
@@ -16,7 +16,6 @@ import javax.ws.rs.core.Response.Status;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.ResponseBody;
-
 import com.capstone.eLearning.domain.User;
 import com.capstone.eLearning.exception.UnknownResourceException;
 import com.capstone.eLearning.services.UserService;
@@ -31,7 +30,7 @@ public class UserRestHandler {
 	@Path("/user")
 	@Produces("application/json, application/xml")
 	@Consumes("application/json, application/xml")
-    @ResponseBody
+	@ResponseBody
 	public Response addUser(User user) {
 		ResponseBuilder respBuilder;
 		int rowsInserted = 0;
@@ -48,6 +47,7 @@ public class UserRestHandler {
 			respBuilder.entity(user);
 			return respBuilder.build();
 		} else {
+
 			respBuilder = Response.status(Status.INTERNAL_SERVER_ERROR);
 			respBuilder.entity(user);
 			return respBuilder.build();
@@ -77,13 +77,13 @@ public class UserRestHandler {
 
 		return user2;
 	}
-	
+
 	@GET
 	@Path("/user/isunique/{username}")
 	@Produces("application/xml, application/json")
 
 	public boolean isUniqueUser(@PathParam("username") String username) {
-		boolean isUnique=true;
+		boolean isUnique = true;
 		try {
 			isUnique = userService.isUniqueUser(username);
 		} catch (Exception ex) {

@@ -14,5 +14,4 @@ public interface UserService {
 	  public boolean resetPassword(String email, String password)throws ServiceException;
 	  public List<User> getAllUsers() throws ServiceException;
 	  public boolean isUniqueUser(String username) throws ServiceException;
-
 }

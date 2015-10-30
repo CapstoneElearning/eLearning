@@ -45,8 +45,7 @@ function SignupCtrl(UserService, $location, $rootScope, FlashService, $state) {
 				return regexp.test(value);
 			}
 		};
-	}
-	;
+	};
 
 	function register() {
 		vm.dataLoading = true;
@@ -61,4 +60,4 @@ function SignupCtrl(UserService, $location, $rootScope, FlashService, $state) {
 			}
 		});
 	}
-}
+};

@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('myApp.version.version-directive', [])
+<<<<<<< HEAD
 
 .directive('usernameAvailable', function($timeout, $q) {
   return {
@@ -43,6 +44,8 @@ angular.module('myApp.version.version-directive', [])
 	  }
 })
 
+=======
+>>>>>>> master
 .directive("passwordMatch", function() {
   return {
     require: "ngModel",
@@ -93,6 +96,7 @@ angular.module('myApp.version.version-directive', [])
     return age;
   }
 
+<<<<<<< HEAD
 })
 
 .directive('emailValidator', ['$http', function($http){
@@ -182,4 +186,6 @@ angular.module('myApp.version.version-directive', [])
             uploader.init();
         }
     }
+=======
+>>>>>>> master
 });

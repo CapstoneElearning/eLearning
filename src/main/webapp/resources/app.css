@@ -105,8 +105,7 @@ ul.style3 {
 }
 
 ul.style3 li {
-	/* 	overflow: hidden;
- */
+	/* 	overflow: hidden; */
 	display: block;
 	padding: 0.8em 0em 0em 0em;
 	margin: 0 0 1.3em 0;
@@ -122,8 +121,7 @@ ul.style3 p {
 }
 
 ul.style3 a {
-	/* 	display: block;
- */
+	/* 	display: block;*/
 	text-decoration: none;
 	color: #2D2D2D;
 }
@@ -232,13 +230,9 @@ ul.social li a {
 
 .lms_login .lms_socialButtons a {
 	color: white;
-	//
-	In
-	yourUse
+	//In yourUse 
 	@body-bg
-	opacity
-	:
-	0.9;
+	opacity	:0.9;
 }
 
 .lms_login .lms_socialButtons a:hover {
@@ -324,53 +318,8 @@ ul li a i:hover {
 .box3
 ,
 {
-float
-
-
-
-
-
-
-:
-
-
-
- 
-
-
-
-left
-
-
-
-
-
-
-;
-margin-right
-
-
-
-
-
-
-:
-
-
-
- 
-
-
-
-20
-px
-
-
-
-
-
-
-;
+float:left;
+margin-right:20px;
 }
 .box4 {
 	float: right;

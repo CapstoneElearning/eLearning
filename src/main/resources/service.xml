@@ -19,7 +19,6 @@
 
 	<tx:annotation-driven transaction-manager="txManager" />
 	
-<!-- 	    SET default mail properties
     <bean id="mailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
         <property name="host" value="smtp.gmail.com"/>
         <property name="port" value="587"/>
@@ -34,12 +33,10 @@
             </props>
         </property>
     </bean>
-	    You can have some pre-configured messagess also which are ready to send
     <bean id="preConfiguredMessage" class="org.springframework.mail.SimpleMailMessage">
         <property name="to" value="deepti1729@gmail.com"></property>
         <property name="from" value="maildeeptireddy@gmail.com"></property>
         <property name="subject" value="FATAL - Application crash. Save your job !!"/>
     </bean>
 	
- --></beans>
-
+</beans>

@@ -15,7 +15,6 @@
 
         return service;
 
-        
         function uLogin(user, pwd) {
             UserService.Login(user,pwd)
                 .then(function (response) {

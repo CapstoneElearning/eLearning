@@ -50,8 +50,9 @@ public class UserServicesClient {
 		logger.info("The response code from Post operation is: " + responseCode);
 		
 		if (responseCode == 200) {
-			//User createdUser = response.readEntity(User.class);
-			//logger.debug(createdUser);
+
+			User createdUser = response.readEntity(User.class);
+			logger.debug(createdUser);
 		}
 	}
 	

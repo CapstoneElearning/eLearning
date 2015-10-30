@@ -4,6 +4,10 @@ package com.capstone.eLearning.exception;
 public class DaoException extends RuntimeException {
   /**
 	 * Deepthi
+=======
+public class DaoException extends RuntimeException {
+  /**
+	 * 
 	 */
   private static final long serialVersionUID = 1L;
   public static int         ROW_NOT_FOUND    = 1;
@@ -34,6 +38,7 @@ public class DaoException extends RuntimeException {
   public DaoException(String message, Throwable throwable)
   {
    super(ExceptionHandler.initMessage(message, throwable), throwable);
+
   }
   
   public int getCode() {
