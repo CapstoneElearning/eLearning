@@ -7,6 +7,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Controller;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.capstone.eLearning.domain.Course;
 import com.capstone.eLearning.services.CourseSearchService;
 
+@Controller
 @RequestMapping("/search")
 public class SearchController {
 	private Logger logger = LoggerFactory.getLogger(SearchController.class);
