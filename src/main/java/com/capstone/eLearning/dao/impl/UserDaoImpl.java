@@ -84,7 +84,7 @@ public class UserDaoImpl implements UserDao {
 			String username = user.getUsername();
 			String sql = "SELECT * FROM users WHERE username = :username";
 			MapSqlParameterSource params = new MapSqlParameterSource("username", username);
-			user1 = namedTemplate.queryForObject(sql, params, userPojo);
+			user1 = (User) namedTemplate.queryForObject(sql, params, userPojo);
 			String decrypted = DataEncryptDecrypt.decryptData(user1.getPassword());
 			user1.setPassword(decrypted);
 			if (user.getPassword().equals(user1.getPassword()) && user1.getActive() == 1) {
@@ -105,7 +105,7 @@ public class UserDaoImpl implements UserDao {
 		try {
 			String sql = "SELECT * FROM users WHERE username = :username";
 			MapSqlParameterSource params = new MapSqlParameterSource("username", username);
-			user1 = namedTemplate.queryForObject(sql, params, userPojo);
+			user1 = (User) namedTemplate.queryForObject(sql, params, userPojo);
 		} catch (Exception e) {
 			logger.error("Exception occured in UserDaoImpl :: getUserByName() for username : " + username, e);
 			throw new DaoException("Exception occured in UserDaoImpl :: getUserByName() for username : " + username, e);
@@ -152,7 +152,7 @@ public class UserDaoImpl implements UserDao {
 		try {
 			String sql = "SELECT * FROM users WHERE email = :email";
 			MapSqlParameterSource params = new MapSqlParameterSource("email", email);
-			user1 = namedTemplate.queryForObject(sql, params, userPojo);
+			user1 = (User) namedTemplate.queryForObject(sql, params, userPojo);
 			if (user1 != null) {
 				flag = true;
 			}
@@ -236,7 +236,7 @@ public class UserDaoImpl implements UserDao {
 		try {
 			String sql = "SELECT * FROM users WHERE username = :username";
 			MapSqlParameterSource params = new MapSqlParameterSource("username", username);
-			User user = namedTemplate.queryForObject(sql, params, userPojo);
+			User user = (User) namedTemplate.queryForObject(sql, params, userPojo);
 			if (user.getUsername() != null) {
 				flag = false;
 			}
