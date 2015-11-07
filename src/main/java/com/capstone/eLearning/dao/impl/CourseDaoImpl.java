@@ -14,6 +14,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.capstone.eLearning.dao.CourseDao;
+import com.capstone.eLearning.dao.mapper.CourseRowMapper;
 import com.capstone.eLearning.dao.mapper.DepartmentRowMapper;
 import com.capstone.eLearning.dao.mapper.SubjectRowMapper;
 import com.capstone.eLearning.domain.Course;
@@ -104,6 +105,7 @@ public class CourseDaoImpl implements CourseDao {
 
 	public Subject findSubjectById(String subjectId) {
 		String sql = "SELECT * FROM subject WHERE subj_id = ?";
+		logger.info(":::: SQL Constructed ::::\n{}", sql);
 		return dbTemplate.queryForObject(sql, new Object[] { subjectId } , new SubjectRowMapper());
 	}
 
@@ -111,4 +113,35 @@ public class CourseDaoImpl implements CourseDao {
 		String sql = "SELECT * FROM department WHERE dept_id = ?";
 		return dbTemplate.queryForObject(sql, new Object[] { deptId } , new DepartmentRowMapper());
 	}
+
+	@Override
+	public void create(Course course) {
+		String sql = "INSERT INTO course " +
+				"(description, schedule_day, schedule_time,"
+				+ "startd_date, end_date, credits,"
+				+ "subject, dept, program, "
+				+ "instructor, room, active) "
+				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+		
+		dbTemplate.update(sql, new Object[] { 
+				course.getDescription(), course.getSchedule_day(), course.getSchedule_time(), 
+				course.getStartd_date(), course.getEnd_date(), course.getCredits(), 
+				course.getSubject().getSubjectId(), course.getDepartment().getDeptId(), course.getProgram().getId(), 
+				course.getInstructor(), course.getRoom(), course.isActive() });  
+	}
+
+	@Override
+	public Course retrieve(Long courseId) {
+		String sql = "SELECT * FROM course WHERE id_pk = ?";
+		logger.info(":::: SQL Constructed ::::\n{}", sql);
+		return dbTemplate.queryForObject(sql, new Object[] { courseId } , new CourseRowMapper());
+	}
+
+	@Override
+	public void delete(Long courseId) {
+	    String sql = "DELETE FROM course WHERE id_pk = ?";
+		logger.info(":::: SQL Constructed ::::\n{}", sql);
+		dbTemplate.update(sql, new Object[] { courseId });
+	}
+
 }
