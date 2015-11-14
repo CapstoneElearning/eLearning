@@ -20,6 +20,7 @@ import com.capstone.eLearning.dao.mapper.SubjectRowMapper;
 import com.capstone.eLearning.domain.Course;
 import com.capstone.eLearning.domain.Department;
 import com.capstone.eLearning.domain.Subject;
+import com.capstone.eLearning.exception.DaoException;
 
 @Repository("courseDaoJdbcImpl")
 public class CourseDaoImpl implements CourseDao {
@@ -35,87 +36,116 @@ public class CourseDaoImpl implements CourseDao {
 	}
 
 	@Override
-	public List<Course> findCoursesBySubjectName(String subjectName) {
+	public List<Course> findCoursesBySubjectName(String subjectName) throws DaoException {
+		List<Course> courseList = new ArrayList<Course>();
+
 		String sql = "SELECT * FROM course WHERE subject = "
 				+ "(select subj_id from subject where subject_name = \"" + subjectName + "\");";
-		
+
 		logger.info(":::: SQL Constructed ::::\n{}", sql);
 
-		List<Map<String, Object>> rows = dbTemplate.queryForList(sql);
-		List<Course> courseList = new ArrayList<Course>();
-		
-        for (Map<String, Object> row : rows) {
-        	Course course = new Course();
-        	course.setId(Integer.parseInt(String.valueOf(row.get("id_pk"))));
-        	course.setDescription(String.valueOf(row.get("description")));
-        	course.setSubject(findSubjectById(String.valueOf(row.get("subject"))));
-        	course.setDepartment(findDeptById(String.valueOf(row.get("dept"))));
-        	course.setCredits(Double.parseDouble(String.valueOf(row.get("credits"))));
-        	course.setActive(Boolean.valueOf(String.valueOf(row.get("active"))));
-        	courseList.add(course);
-        }
+		try {
+			List<Map<String, Object>> rows = dbTemplate.queryForList(sql);
+
+			for (Map<String, Object> row : rows) {
+				Course course = new Course();
+				course.setId(Integer.parseInt(String.valueOf(row.get("id_pk"))));
+				course.setDescription(String.valueOf(row.get("description")));
+				course.setSubject(findSubjectById(String.valueOf(row.get("subject"))));
+				course.setDepartment(findDeptById(String.valueOf(row.get("dept"))));
+				course.setCredits(Double.parseDouble(String.valueOf(row.get("credits"))));
+				course.setActive(Boolean.valueOf(String.valueOf(row.get("active"))));
+				courseList.add(course);
+			}
+		}
+		catch (Exception e) {
+			throw new DaoException(e);
+		}
+
 		return courseList;
 	}
 
 	@Override
-	public List<Course> findCoursesByProgramName(String programName) {
-		String sql = "SELECT * FROM course WHERE dept = "
+	public List<Course> findCoursesByProgramName(String programName) throws DaoException {
+		List<Course> courseList = new ArrayList<Course>();
+
+		String sql = "SELECT * FROM course WHERE program = "
 				+ "(select id_pk from program where name = \"" + programName + "\");";
-		
+
 		logger.info(":::: SQL Constructed ::::\n{}", sql);
-		
-		List<Map<String, Object>> rows = dbTemplate.queryForList(sql);
-		List<Course> courseList = new ArrayList<Course>();
-		
-        for (Map<String, Object> row : rows) {
-        	Course course = new Course();
-        	course.setId(Integer.parseInt(String.valueOf(row.get("id_pk"))));
-        	course.setDescription(String.valueOf(row.get("description")));
-        	course.setSubject(findSubjectById(String.valueOf(row.get("subject"))));
-        	course.setDepartment(findDeptById(String.valueOf(row.get("dept"))));
-        	course.setCredits(Double.parseDouble(String.valueOf(row.get("credits"))));
-        	course.setActive(Boolean.valueOf(String.valueOf(row.get("active"))));
-        	courseList.add(course);
-        }
+
+		try {
+			List<Map<String, Object>> rows = dbTemplate.queryForList(sql);
+
+			for (Map<String, Object> row : rows) {
+				Course course = new Course();
+				course.setId(Integer.parseInt(String.valueOf(row.get("id_pk"))));
+				course.setDescription(String.valueOf(row.get("description")));
+				course.setSubject(findSubjectById(String.valueOf(row.get("subject"))));
+				course.setDepartment(findDeptById(String.valueOf(row.get("dept"))));
+				course.setCredits(Double.parseDouble(String.valueOf(row.get("credits"))));
+				course.setActive(Boolean.valueOf(String.valueOf(row.get("active"))));
+				courseList.add(course);
+			}
+		}
+		catch (Exception e) {
+			throw new DaoException(e);
+		}
 		return courseList;
 	}
 
 	@Override
-	public List<Course> findCoursesByDeptName(String deptName) {
+	public List<Course> findCoursesByDeptName(String deptName) throws DaoException {
+		List<Course> courseList = new ArrayList<Course>();
+
 		String sql = "SELECT * FROM course WHERE dept = "
 				+ "(select dept_id from department where name = \"" + deptName + "\");";
-		
+
 		logger.info(":::: SQL Constructed ::::\n{}", sql);
 
-		List<Map<String, Object>> rows = dbTemplate.queryForList(sql);
-		List<Course> courseList = new ArrayList<Course>();
-		
-        for (Map<String, Object> row : rows) {
-        	Course course = new Course();
-        	course.setId(Integer.parseInt(String.valueOf(row.get("id_pk"))));
-        	course.setDescription(String.valueOf(row.get("description")));
-        	course.setSubject(findSubjectById(String.valueOf(row.get("subject"))));
-        	course.setDepartment(findDeptById(String.valueOf(row.get("dept"))));
-        	course.setCredits(Double.parseDouble(String.valueOf(row.get("credits"))));
-        	course.setActive(Boolean.valueOf(String.valueOf(row.get("active"))));
-        	courseList.add(course);
-        }
+		try {
+			List<Map<String, Object>> rows = dbTemplate.queryForList(sql);
+
+			for (Map<String, Object> row : rows) {
+				Course course = new Course();
+				course.setId(Integer.parseInt(String.valueOf(row.get("id_pk"))));
+				course.setDescription(String.valueOf(row.get("description")));
+				course.setSubject(findSubjectById(String.valueOf(row.get("subject"))));
+				course.setDepartment(findDeptById(String.valueOf(row.get("dept"))));
+				course.setCredits(Double.parseDouble(String.valueOf(row.get("credits"))));
+				course.setActive(Boolean.valueOf(String.valueOf(row.get("active"))));
+				courseList.add(course);
+			}
+		}
+		catch (Exception e) {
+			throw new DaoException(e);
+		}
+
 		return courseList;
 	}
 
-	public Subject findSubjectById(String subjectId) {
+	public Subject findSubjectById(String subjectId) throws DaoException {
 		String sql = "SELECT * FROM subject WHERE subj_id = ?";
-		logger.info(":::: SQL Constructed ::::\n{}", sql);
-		return dbTemplate.queryForObject(sql, new Object[] { subjectId } , new SubjectRowMapper());
+		try {
+			return dbTemplate.queryForObject(sql, new Object[] { subjectId } , new SubjectRowMapper());
+		}
+		catch (Exception e) {
+			throw new DaoException(e);
+		}
 	}
 
-	public Department findDeptById(String deptId) {
+	public Department findDeptById(String deptId) throws DaoException {
 		String sql = "SELECT * FROM department WHERE dept_id = ?";
-		return dbTemplate.queryForObject(sql, new Object[] { deptId } , new DepartmentRowMapper());
+		try {
+			return dbTemplate.queryForObject(sql, new Object[] { deptId } , new DepartmentRowMapper());
+		}
+		catch (Exception e) {
+			throw new DaoException(e);
+		}
 	}
 
 	@Override
-	public void create(Course course) {
+	public void create(Course course) throws DaoException {
 		String sql = "INSERT INTO course " +
 				"(description, schedule_day, schedule_time,"
 				+ "startd_date, end_date, credits,"
@@ -123,25 +153,59 @@ public class CourseDaoImpl implements CourseDao {
 				+ "instructor, room, active) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
-		dbTemplate.update(sql, new Object[] { 
-				course.getDescription(), course.getSchedule_day(), course.getSchedule_time(), 
-				course.getStartd_date(), course.getEnd_date(), course.getCredits(), 
-				course.getSubject().getSubjectId(), course.getDepartment().getDeptId(), course.getProgram().getId(), 
-				course.getInstructor(), course.getRoom(), course.isActive() });  
+		try {
+			dbTemplate.update(sql, new Object[] { 
+					course.getDescription(), course.getSchedule_day(), course.getSchedule_time(), 
+					course.getStartd_date(), course.getEnd_date(), course.getCredits(), 
+					course.getSubject().getSubjectId(), course.getDepartment().getDeptId(), course.getProgram().getId(), 
+					course.getInstructor(), course.getRoom(), course.isActive() });  
+		}
+		catch (Exception e) {
+			throw new DaoException(e);
+		}
 	}
 
 	@Override
-	public Course retrieve(Long courseId) {
+	public Course retrieve(Long courseId) throws DaoException {
 		String sql = "SELECT * FROM course WHERE id_pk = ?";
-		logger.info(":::: SQL Constructed ::::\n{}", sql);
-		return dbTemplate.queryForObject(sql, new Object[] { courseId } , new CourseRowMapper());
+		try {
+			return dbTemplate.queryForObject(sql, new Object[] { courseId } , new CourseRowMapper());
+		}
+		catch (Exception e) {
+			throw new DaoException(e);
+		}
 	}
 
 	@Override
-	public void delete(Long courseId) {
-	    String sql = "DELETE FROM course WHERE id_pk = ?";
-		logger.info(":::: SQL Constructed ::::\n{}", sql);
-		dbTemplate.update(sql, new Object[] { courseId });
+	public void delete(Long courseId) throws DaoException {
+		String sql = "DELETE FROM course WHERE id_pk = ?";
+		try {
+			dbTemplate.update(sql, new Object[] { courseId });
+		}
+		catch (Exception e) {
+			throw new DaoException(e);
+		}
+	}
+
+	@Override
+	public void update(Long courseId, String startd_date, String end_date, double credits, int active) throws DaoException {
+		String sql = "UPDATE course SET startd_date=?, end_date=?, credits=?, active=? WHERE id_pk = ?";
+		try {
+			dbTemplate.update(sql, new Object[] { startd_date, end_date, credits, active, courseId});
+		}
+		catch (Exception e) {
+			throw new DaoException(e);
+		}
+	}
+
+	@Override
+	public List<Course> findCourse(String someNameText) throws DaoException {
+		/* name could be deptName (or) progName (or) SubjName */
+		List<Course> results = new ArrayList<Course>();
+		results.addAll(findCoursesByDeptName(someNameText));
+		results.addAll(findCoursesByProgramName(someNameText));
+		results.addAll(findCoursesBySubjectName(someNameText));
+		return results;
 	}
 
 }
