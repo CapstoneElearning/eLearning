@@ -5,16 +5,19 @@ import java.util.List;
 import javax.persistence.Entity;
 
 import com.capstone.eLearning.domain.Course;
+import com.capstone.eLearning.exception.DaoException;
 
 @Entity
 public interface CourseDao {
 	/* Search Operations */
-	List<Course> findCoursesByProgramName(String programName);
-	List<Course> findCoursesByDeptName(String deptName);
-	List<Course> findCoursesBySubjectName(String subjectName);
+	List<Course> findCoursesByProgramName(String programName) throws DaoException;
+	List<Course> findCoursesByDeptName(String deptName) throws DaoException;
+	List<Course> findCoursesBySubjectName(String subjectName) throws DaoException;
+	List<Course> findCourse(String someNameText) throws DaoException;
 	
-	/* Create, retrieve, delete operations */
-	void create(Course course);
-	Course retrieve(Long courseId);
-	void delete(Long courseId);
+	/* Create, retrieve, update, delete operations */
+	void create(Course course) throws DaoException;
+	Course retrieve(Long courseId) throws DaoException;
+	void delete(Long courseId) throws DaoException;
+	void update(Long courseId, String startd_date, String end_date, double credits, int active) throws DaoException;
 }
