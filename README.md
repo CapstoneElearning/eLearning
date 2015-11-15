@@ -15,7 +15,7 @@ Course Service (service to add, retrieve and delete course):
 Backend URLs:
 Create Course: http://localhost:8080/course/create (you should POST a json string representing a course)
 Retrieve Course: http://localhost:8080/course/retrieve/<<course_id_goes_here>>
-Update Course: http://localhost:8080/course/update/<<course_id_goes_here>>?startd_date=yyyy-mm-dd&end_date=yyyy-mm-dd&credits=10&active=1
+Update Course: http://localhost:8080/course/update/<<course_id_goes_here>>?startd_date=yyyy-mm-dd&end_date=yyyy-mm-dd&credits=10&instructor=1&active=1
 Delete Course: http://localhost:8080/course/delete/<<course_id_goes_here>>
 
 Assignment URLs:

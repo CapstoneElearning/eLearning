@@ -50,9 +50,9 @@ public class CourseServiceImpl implements CourseService {
 
 	@Override
 	public void update(Long courseId, String startd_date, String end_date,
-			double credits, int active) throws ServiceException {
+			double credits, int instructor, int active) throws ServiceException {
 		try {
-			courseDao.update(courseId, startd_date, end_date, credits, active);
+			courseDao.update(courseId, startd_date, end_date, credits, instructor, active);
 		}
 		catch (DaoException e) {
 			throw new ServiceException("Update course failed", e);
