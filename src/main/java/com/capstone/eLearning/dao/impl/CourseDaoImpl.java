@@ -55,6 +55,11 @@ public class CourseDaoImpl implements CourseDao {
 				course.setDepartment(findDeptById(String.valueOf(row.get("dept"))));
 				course.setCredits(Double.parseDouble(String.valueOf(row.get("credits"))));
 				course.setActive(Boolean.valueOf(String.valueOf(row.get("active"))));
+				course.setInstructor(Integer.parseInt(String.valueOf(row.get("instructor"))));
+				course.setRoom(Integer.parseInt(String.valueOf(row.get("room"))));
+				course.setSchedule_day(String.valueOf(row.get("schedule_day")));
+				course.setStartd_date(new java.util.Date(String.valueOf(row.get("startd_date"))));
+				course.setEnd_date(new java.util.Date(String.valueOf(row.get("end_date"))));
 				courseList.add(course);
 			}
 		}
@@ -85,6 +90,11 @@ public class CourseDaoImpl implements CourseDao {
 				course.setDepartment(findDeptById(String.valueOf(row.get("dept"))));
 				course.setCredits(Double.parseDouble(String.valueOf(row.get("credits"))));
 				course.setActive(Boolean.valueOf(String.valueOf(row.get("active"))));
+				course.setInstructor(Integer.parseInt(String.valueOf(row.get("instructor"))));
+				course.setRoom(Integer.parseInt(String.valueOf(row.get("room"))));
+				course.setSchedule_day(String.valueOf(row.get("schedule_day")));
+				course.setStartd_date(new java.util.Date(String.valueOf(row.get("startd_date"))));
+				course.setEnd_date(new java.util.Date(String.valueOf(row.get("end_date"))));
 				courseList.add(course);
 			}
 		}
@@ -114,6 +124,11 @@ public class CourseDaoImpl implements CourseDao {
 				course.setDepartment(findDeptById(String.valueOf(row.get("dept"))));
 				course.setCredits(Double.parseDouble(String.valueOf(row.get("credits"))));
 				course.setActive(Boolean.valueOf(String.valueOf(row.get("active"))));
+				course.setInstructor(Integer.parseInt(String.valueOf(row.get("instructor"))));
+				course.setRoom(Integer.parseInt(String.valueOf(row.get("room"))));
+				course.setSchedule_day(String.valueOf(row.get("schedule_day")));
+				course.setStartd_date(new java.util.Date(String.valueOf(row.get("startd_date"))));
+				course.setEnd_date(new java.util.Date(String.valueOf(row.get("end_date"))));
 				courseList.add(course);
 			}
 		}
@@ -188,10 +203,10 @@ public class CourseDaoImpl implements CourseDao {
 	}
 
 	@Override
-	public void update(Long courseId, String startd_date, String end_date, double credits, int active) throws DaoException {
-		String sql = "UPDATE course SET startd_date=?, end_date=?, credits=?, active=? WHERE id_pk = ?";
+	public void update(Long courseId, String startd_date, String end_date, double credits, int instructor, int active) throws DaoException {
+		String sql = "UPDATE course SET startd_date=?, end_date=?, credits=?, instructor=?, active=? WHERE id_pk = ?";
 		try {
-			dbTemplate.update(sql, new Object[] { startd_date, end_date, credits, active, courseId});
+			dbTemplate.update(sql, new Object[] { startd_date, end_date, credits, instructor, active, courseId});
 		}
 		catch (Exception e) {
 			throw new DaoException(e);
@@ -206,6 +221,38 @@ public class CourseDaoImpl implements CourseDao {
 		results.addAll(findCoursesByProgramName(someNameText));
 		results.addAll(findCoursesBySubjectName(someNameText));
 		return results;
+	}
+
+	@Override
+	public List<Course> findAllCourses() throws DaoException {
+		String sql = "select * from course";
+		 
+		List<Course> courseList = new ArrayList<Course>();
+		
+		try {
+			List<Map<String, Object>> rows = dbTemplate.queryForList(sql);
+
+			for (Map<String, Object> row : rows) {
+				Course course = new Course();
+				course.setId(Integer.parseInt(String.valueOf(row.get("id_pk"))));
+				course.setDescription(String.valueOf(row.get("description")));
+				course.setSubject(findSubjectById(String.valueOf(row.get("subject"))));
+				course.setDepartment(findDeptById(String.valueOf(row.get("dept"))));
+				course.setCredits(Double.parseDouble(String.valueOf(row.get("credits"))));
+				course.setInstructor(Integer.parseInt(String.valueOf(row.get("instructor"))));
+				course.setRoom(Integer.parseInt(String.valueOf(row.get("room"))));
+				course.setSchedule_day(String.valueOf(row.get("schedule_day")));
+				course.setActive(Boolean.valueOf(String.valueOf(row.get("active"))));
+				course.setStartd_date(new java.util.Date(String.valueOf(row.get("startd_date"))));
+				course.setEnd_date(new java.util.Date(String.valueOf(row.get("end_date"))));
+				courseList.add(course);
+			}
+			
+			return courseList;
+		}
+		catch (Exception e) {
+			throw new DaoException(e);
+		}
 	}
 
 }

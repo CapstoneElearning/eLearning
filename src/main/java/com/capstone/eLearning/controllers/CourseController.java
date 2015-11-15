@@ -45,10 +45,10 @@ public class CourseController {
 		try {
 			Course course = gson.fromJson(courseJsonString, Course.class);
 			courseService.create(course);
-			return Response.ok("Create succeeded").build();
+			return Response.ok("Create course succeeded").build();
 		}
 		catch (Exception e) {
-			throw new ServiceException("Create failed", e);
+			throw new ServiceException("Create course failed", e);
 		}
 	}
 
@@ -67,10 +67,10 @@ public class CourseController {
 
 		try {
 			courseService.delete(course_id);
-			return "Delete succeeded";
+			return "Delete course succeeded";
 		}
 		catch (Exception e) {
-			throw new ServiceException("Delete failed", e);
+			throw new ServiceException("Delete course failed", e);
 		}
 	}
 
@@ -106,17 +106,17 @@ public class CourseController {
 	 */
 	@RequestMapping(value="/update/{course_id}", method=RequestMethod.GET)
 	public String update(@PathVariable("course_id") Long course_id, @QueryParam("startd_date") String startd_date, @QueryParam("end_date") String end_date, 
-			@QueryParam("credits") double credits, @QueryParam("active") int active) throws ServiceException {
+			@QueryParam("credits") double credits, @QueryParam("instructor") int instructor, @QueryParam("active") int active) throws ServiceException {
 		if (StringUtils.isEmpty(course_id)) {
 			throw new ServiceException("course_id is empty!");
 		}
 
 		try {
-			courseService.update(course_id, startd_date, end_date, credits, active);
-			return "Update succeeded";
+			courseService.update(course_id, startd_date, end_date, credits, instructor, active);
+			return "Update course succeeded";
 		}
 		catch (Exception e) {
-			throw new ServiceException("Update failed", e);
+			throw new ServiceException("Update course failed", e);
 		}
 	}
 }
