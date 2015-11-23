@@ -58,4 +58,11 @@ public class CourseServiceImpl implements CourseService {
 			throw new ServiceException("Update course failed", e);
 		}
 	}
+	
+	
+	@Override
+	public List<Course> getAll() {
+		List<Course> courses=courseDao.getAll();
+		return courses;
+	}
 }
