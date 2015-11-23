@@ -1,42 +1,210 @@
-<div  ng-controller="dashboardCtrl as vm">
-	<h3>Hi {{vm.user.username}}! <p class="logout">
-		<a href="#/login" class="btn btn-warning">Logout</a>
-	</p></h3>
-	
+<div class="panel panel-info" ng-controller="dashboardCtrl as vm">
+	<div class="panel-heading">
+		<h3 class="panel-title">
+			Welcome <b>{{vm.user.username}}</b>, you logged in as
+			{{vm.user.role_id | role }}
+			<p style="float: right">
+				<a href="#/login" class="btn btn-warning">Logout</a>
+			</p>
+		</h3>
+	</div>
 
-	<div class="container">
-		<h3>List of Students</h3>
-		<table class="table table-bordered">
-			<thead>
-				<tr>
-					<th>UserName</th>
-					<th>First Name</th>
-					<th>Middle Name</th>
-					<th>Last Name</th>
-					<th>DOB</th>
-					<th>Email Address</th>
-					<th>Cell Phone</th>
-					<th>Home Phone</th>
-					<th>Address</th>
-					<th>Zip Code</th>
+	<div ng-show="vm.error" class="alert alert-danger">{{vm.error}}</div>
 
-				</tr>
-			</thead>
-			<tr ng-repeat="user in vm.allUsers">
-				<td>{{ vm.user.username }}</td>
-				<td>{{ user.fname }}</td>
-				<td> {{ user.mname }}</td>
-				<td> {{user.lname}}</td>
-				<td>{{ user.dob }}</td>
-				<td>{{ user.email }}</td>
-				<td>{{user.phone_cell}}</td>
-				<td>{{user.phone_home}}</td>
-				<td>{{ user.address1 }} {{ user.address2 }} {{ user.city }} {{
-					user.state }} {{ user.country }}</td>
-				 <td ng-show="user.zip !=0">{{ user.zip }}&nbsp;</td>
-				 <td ng-show="user.zip==0">&nbsp;</td>
-					
-			</tr>
-		</table>
+	<div class="panel-body">
+		<ul class="nav nav-tabs" id="myTab">
+			<li class="active"><a show-tab="profile" href="#profile"
+				data-toggle="tab">Profile</a></li>
+			<li><a show-tab="courses" href="#courses"
+				ng-show="vm.user.role_id < 3 " data-toggle="tab">Courses</a></li>
+			<li><a show-tab="courses" href="#manageCourses"
+				ng-show="vm.user.role_id > 2 " data-toggle="tab">Manage Courses</a></li>
+			<li><a show-tab="users" href="#users"
+				ng-show="vm.user.role_id > 2 " data-toggle="tab">Users</a></li>
+		</ul>
+
+		<div class="tab-content">
+			<div class="tab-pane" id="users">
+				<div class="row">
+					<div class="col-md-12">
+						<div class="table-responsive">
+							<h3>List of Students</h3>
+							<table class="table table-striped">
+								<thead>
+									<tr>
+										<th>UserName</th>
+										<th>First Name</th>
+										<th>Middle Name</th>
+										<th>Last Name</th>
+										<th>DOB</th>
+										<th>Email Address</th>
+										<th>Mobile</th>
+										<th>Address</th>
+										<th>Edit</th>
+										<th>Delete</th>
+									</tr>
+								</thead>
+								<tr ng-repeat="user in vm.allUsers">
+									<td>{{ vm.user.username }}</td>
+									<td>{{ user.fname }}</td>
+									<td>{{ user.mname }}</td>
+									<td>{{user.lname}}</td>
+									<td>{{ user.dob }}</td>
+									<td>{{ user.email }}</td>
+									<td>{{user.phone_cell}}</td>
+									<td>{{ user.address1 }} {{ user.address2 }} {{ user.city
+										}} {{ user.state }} {{ user.country }}</td>
+									<td><p data-placement="top" data-toggle="tooltip"
+											title="Edit">
+											<button class="btn btn-primary btn-xs" data-title="Edit"
+												data-toggle="modal" data-target="#edit">
+												<span class="glyphicon glyphicon-pencil"></span>
+											</button>
+										</p></td>
+									<td><p data-placement="top" data-toggle="tooltip"
+											title="Delete">
+											<button class="btn btn-danger btn-xs" data-title="Delete"
+												data-toggle="modal" data-target="#delete">
+												<span class="glyphicon glyphicon-trash"></span>
+											</button>
+										</p></td>
+
+								</tr>
+							</table>
+
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="tab-pane" id="courses">
+				<h2>Courses Tab</h2>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Course Name</th>
+							<th>Description</th>
+							<th>StartDate</th>
+							<th>EndDate</th>
+							<th>Schedule</th>
+							<th>Instructor</th>
+							<th>View Assignments</th>
+							<th>Handouts</th>
+							<th>Activities</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="course in vm.allCourses">
+							<td>{{ course.name }}</td>
+							<td>{{ course.description }}</td>
+							<td>{{ course.start_date | date:medium }}</td>
+							<td>{{ course.end_date | date:medium }}</td>
+							<td>{{ course.schedule_day | date: 'DDD HH:MM' }}</td>
+							<td>{{ course.instructor }}</td>
+							<td><a href="#" class="btn btn-warning">View Assignments</a></td>
+							<td><a href="#" class="btn btn-warning">Handouts</a></td>
+							<td><a href="#" class="btn btn-warning">Activities</a></td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+			<div class="tab-pane" id="manageCourses">
+				<h2>Manage Courses</h2>
+				<table class="table table-striped">
+					<thead>
+						<tr>
+							<th>Course Name</th>
+							<th>Description</th>
+							<th>StartDate</th>
+							<th>EndDate</th>
+							<th>Schedule</th>
+							<th>Instructor</th>
+							<th>Edit</th>
+							<th>Delete</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="course in vm.allCourses">
+							<td>{{ course.name }}</td>
+							<td>{{ course.description }}</td>
+							<td>{{ course.start_date | date:medium }}</td>
+							<td>{{ course.end_date | date:medium }}</td>
+							<td>{{ course.schedule_day | date: 'DDD HH:MM' }}</td>
+							<td>{{ course.instructor }}</td>
+							<td><p data-placement="top" data-toggle="tooltip"
+									title="Edit">
+									<button class="btn btn-primary btn-xs" data-title="Edit"
+										data-toggle="modal" data-target="#editCourse">
+										<span class="glyphicon glyphicon-pencil"></span>
+									</button>
+								</p></td>
+							<td><p data-placement="top" data-toggle="tooltip"
+									title="Delete">
+									<button class="btn btn-danger btn-xs" data-title="Delete"
+										data-toggle="modal" data-target="#deleteCourse">
+										<span class="glyphicon glyphicon-trash"></span>
+									</button>
+								</p></td>
+						</tr>
+					</tbody>
+				</table>
+
+			</div>
+			<div class="tab-pane active" id="profile">
+				<h2>User Profile</h2>
+
+				<table class="table">
+					<p align="right">
+						<a ui-sref=courses.edit({id:course.id}) class="btn btn-primary">Edit
+							Profile</a>
+					</p>
+					<tbody>
+
+						<tr>
+							<td width="25%"><b>Full Name</b></td>
+							<td width="5%">&nbsp;</td>
+							<td width="70%">{{vm.user.fname}} {{vm.user.mname}}
+								{{vm.user.lname}}</td>
+						</tr>
+						<tr>
+							<td><b>Date of Birth</b></td>
+							<td width="5%">&nbsp;</td>
+							<td>{{vm.user.dob | date:medium }}</td>
+						</tr>
+						<tr>
+							<td><b>Email Address</b></td>
+							<td width="5%">&nbsp;</td>
+							<td>{{vm.user.email}}</td>
+						</tr>
+						<tr>
+							<td><b>Phone Home</b></td>
+							<td width="5%">&nbsp;</td>
+							<td>{{vm.user.phone_home}}</td>
+						</tr>
+						<tr>
+							<td><b>Phone Mobile</b></td>
+							<td width="5%">&nbsp;</td>
+							<td>{{vm.user.phone_cell}}</td>
+						</tr>
+						<tr>
+							<td><b>Address</b></td>
+							<td width="5%">&nbsp;</td>
+							<td><address>{{vm.user.address1}}
+									{{vm.user.address2}} {{vm.user.city}} {{vm.user.state}}
+									{{vm.user.zip}}</address></td>
+						</tr>
+
+						<tr>
+							<td><b>Registered On</b></td>
+							<td width="5%">&nbsp;</td>
+							<td>{{vm.user.registered_on | date:medium }}</td>
+						</tr>
+
+					</tbody>
+				</table>
+
+			</div>
+		</div>
 	</div>
 </div>
+
