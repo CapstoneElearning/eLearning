@@ -8,6 +8,8 @@ import javax.ws.rs.core.Application;
 
 import org.glassfish.jersey.jackson.JacksonFeature;
 
+import com.capstone.eLearning.controllers.CourseController;
+import com.capstone.eLearning.controllers.SearchController;
 import com.capstone.eLearning.exception.UnknownResourceExResolver;;
 
 @ApplicationPath("/")
@@ -17,6 +19,8 @@ public class RestApplicationConfig extends Application {
 	public RestApplicationConfig() {
 		restClassSet.add(JacksonFeature.class);
 		restClassSet.add(UserRestHandler.class);
+		restClassSet.add(CourseController.class);
+		restClassSet.add(SearchController.class);
 		restClassSet.add(UnknownResourceExResolver.class);
 	}
 	
