@@ -50,7 +50,7 @@ angular.module('myApp').directive('slider', function($timeout) {
 			/* End : For Automatic slideshow*/
 			
 	    },
-		templateUrl:'../resources/modules/partials/banner.html'
+		templateUrl:'/eLearning/resources/modules/partials/banner.html'
 	  }	
 })
 
