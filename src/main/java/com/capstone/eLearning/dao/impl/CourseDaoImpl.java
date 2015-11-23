@@ -58,7 +58,7 @@ public class CourseDaoImpl implements CourseDao {
 				course.setInstructor(Integer.parseInt(String.valueOf(row.get("instructor"))));
 				course.setRoom(Integer.parseInt(String.valueOf(row.get("room"))));
 				course.setSchedule_day(String.valueOf(row.get("schedule_day")));
-				course.setStartd_date(new java.util.Date(String.valueOf(row.get("startd_date"))));
+				course.setStart_date(new java.util.Date(String.valueOf(row.get("start_date"))));
 				course.setEnd_date(new java.util.Date(String.valueOf(row.get("end_date"))));
 				courseList.add(course);
 			}
@@ -93,7 +93,7 @@ public class CourseDaoImpl implements CourseDao {
 				course.setInstructor(Integer.parseInt(String.valueOf(row.get("instructor"))));
 				course.setRoom(Integer.parseInt(String.valueOf(row.get("room"))));
 				course.setSchedule_day(String.valueOf(row.get("schedule_day")));
-				course.setStartd_date(new java.util.Date(String.valueOf(row.get("startd_date"))));
+				course.setStart_date(new java.util.Date(String.valueOf(row.get("start_date"))));
 				course.setEnd_date(new java.util.Date(String.valueOf(row.get("end_date"))));
 				courseList.add(course);
 			}
@@ -127,7 +127,7 @@ public class CourseDaoImpl implements CourseDao {
 				course.setInstructor(Integer.parseInt(String.valueOf(row.get("instructor"))));
 				course.setRoom(Integer.parseInt(String.valueOf(row.get("room"))));
 				course.setSchedule_day(String.valueOf(row.get("schedule_day")));
-				course.setStartd_date(new java.util.Date(String.valueOf(row.get("startd_date"))));
+				course.setStart_date(new java.util.Date(String.valueOf(row.get("start_date"))));
 				course.setEnd_date(new java.util.Date(String.valueOf(row.get("end_date"))));
 				courseList.add(course);
 			}
@@ -163,7 +163,7 @@ public class CourseDaoImpl implements CourseDao {
 	public void create(Course course) throws DaoException {
 		String sql = "INSERT INTO course " +
 				"(description, schedule_day, schedule_time,"
-				+ "startd_date, end_date, credits,"
+				+ "start_date, end_date, credits,"
 				+ "subject, dept, program, "
 				+ "instructor, room, active) "
 				+ "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
@@ -171,7 +171,7 @@ public class CourseDaoImpl implements CourseDao {
 		try {
 			dbTemplate.update(sql, new Object[] { 
 					course.getDescription(), course.getSchedule_day(), course.getSchedule_time(), 
-					course.getStartd_date(), course.getEnd_date(), course.getCredits(), 
+					course.getStart_date(), course.getEnd_date(), course.getCredits(), 
 					course.getSubject().getSubjectId(), course.getDepartment().getDeptId(), course.getProgram().getId(), 
 					course.getInstructor(), course.getRoom(), course.isActive() });  
 		}
@@ -203,10 +203,10 @@ public class CourseDaoImpl implements CourseDao {
 	}
 
 	@Override
-	public void update(Long courseId, String startd_date, String end_date, double credits, int instructor, int active) throws DaoException {
-		String sql = "UPDATE course SET startd_date=?, end_date=?, credits=?, instructor=?, active=? WHERE id_pk = ?";
+	public void update(Long courseId, String start_date, String end_date, double credits, int instructor, int active) throws DaoException {
+		String sql = "UPDATE course SET start_date=?, end_date=?, credits=?, instructor=?, active=? WHERE id_pk = ?";
 		try {
-			dbTemplate.update(sql, new Object[] { startd_date, end_date, credits, instructor, active, courseId});
+			dbTemplate.update(sql, new Object[] { start_date, end_date, credits, instructor, active, courseId});
 		}
 		catch (Exception e) {
 			throw new DaoException(e);
@@ -243,7 +243,7 @@ public class CourseDaoImpl implements CourseDao {
 				course.setRoom(Integer.parseInt(String.valueOf(row.get("room"))));
 				course.setSchedule_day(String.valueOf(row.get("schedule_day")));
 				course.setActive(Boolean.valueOf(String.valueOf(row.get("active"))));
-				course.setStartd_date(new java.util.Date(String.valueOf(row.get("startd_date"))));
+				course.setStart_date(new java.util.Date(String.valueOf(row.get("start_date"))));
 				course.setEnd_date(new java.util.Date(String.valueOf(row.get("end_date"))));
 				courseList.add(course);
 			}
