@@ -4,80 +4,37 @@
 'use strict';
 angular
 		.module('myApp')
+		.controller('CourseCtrl',['$scope','$state','$window','CourseService',
+						function($scope, $state, $window, CourseService) {
 
-		.controller(
-				'CourseCtrl',
-				[ '$scope', '$state', '$window',
-						function($scope, $state, $window) {
+							var vm = this;
 
-							// returns a promise that will bind
-							// to view as soon as available
-							// $scope.courses = Course.query(function(data) {
-							// console.log(data);
-							// $scope.courses=data;
-							// });
-
-							$scope.courses = [
-
-							{
-								category : "Computer Science",
-								courseId : "401",
-								title : "Data Structures and Algorithms",
-								startDate : "Nov 15"
-							}, {
-								category : "Computer Engineering",
-								courseId : "480",
-								title : "Java and Internet Applications",
-								startDate : "Nov 01"
-							}, {
-								category : "Computer Science",
-								courseId : "532",
-								title : "Advanced Java and Web Applications",
-								startDate : "Nov 25"
-							}, {
-								category : "Computer Engineering",
-								courseId : "101",
-								title : "Network Security",
-								startDate : "Nov 12"
-							}, {
-								category : "Computer Science",
-								courseId : "401",
-								title : "Software Quality and Test Automation",
-								startDate : "Nov 15"
-							},{
-								category : "Computer Science",
-								courseId : "401",
-								title : "Software Quality and Test Automation",
-								startDate : "Nov 15"
+							vm.course = null;
+							vm.courses = [];
+							vm.enrolledCourses = [];
+							loadAllCourses();
+							
+							function loadEnrolledCourses() {
+								CourseService
+										.getCourses(
+												$rootScope.globals.currentUser.username)
+										.then(function(user) {
+											vm.enrolledCourses = user.data;
+										});
 							}
-
-							];
-
-							$scope.deleteCourse = function(index) {
-								if ($window.confirm('Are you sure?')) {
-									$scope.courses[index].$delete(function() {
-										// delete locally
-										$scope.courses.splice(index, 1);
-									});
-								}
-							};
+							
+							
+							function loadAllCourses() {
+								CourseService.GetAll().then(function(users) {
+									vm.courses = users.data;
+								});
+							}
 						} ])
 
 		// New
-		.controller(
-				'NewCourseCtrl',
-				[
-						'$scope',
-						'$state',
-						'$filter',
-						'$stateParams',
-						'Course',
-						function($scope, $state, $filter, $stateParams, Course) {
+		.controller('NewCourseCtrl',['$scope','$state',	'$filter','$stateParams','CourseService',
+						function($scope, $state, $filter, $stateParams,	CourseService) {
 
-							// $scope.Course (bound to the form)
-							// has release_date as date type
-							// $scope.newCourse converts it to
-							// string for POSTing
 							$scope.Course = {};
 							$scope.newCourse = new Course();
 
@@ -96,23 +53,35 @@ angular
 						} ])
 
 		// Show
-		.controller(
-				'ShowCourseCtrl',
-				[ '$scope', '$stateParams', 'Course',
-						function($scope, $stateParams, Course) {
-
-							$scope.Course = Course.get({
-								id : parseInt($stateParams.id, 10)
-							}, function() {
-								// console.log($scope.Course);
-							});
+		.controller('EnrollCourseCtrl',['$rootScope', '$scope','$route','$routeParams','$stateParams','CourseService',
+						function($rootScope, $scope, $route, $routeParams,$stateParams, CourseService) {
+						var vm = this;
+						vm.course = null;
+						
+			            console.log("stateParams:id : "+$stateParams.id);
+			            var  user = $rootScope.globals.UserProfile;
+			            
+			            vm.enrollCourse=enrollCourse;
+			            
+							function enrollCourse(){								
+								CourseService.GetById($stateParams.id,user).then(function(users) {
+									vm.course = users.data;
+								});
+							};						
 
 						} ])
 
 		// / Edit
-		.controller('EditCourseCtrl',
-				['$scope','$state','$filter','$stateParams','Course',
-						function($scope, $state, $filter, $stateParams, Course) {
+		.controller(
+				'EditCourseCtrl',
+				[
+						'$scope',
+						'$state',
+						'$filter',
+						'$stateParams',
+						'CourseService',
+						function($scope, $state, $filter, $stateParams,
+								CourseService) {
 
 							$scope.Course = {};
 
@@ -150,4 +119,28 @@ angular
 								});
 							};
 
-						} ]);
+						} ])
+						
+	.directive('cdToggleOnClick', function () 
+			{
+		  return {
+		        restrict: 'A',
+				scope: 
+				{
+					cdToggleOnClick: '='
+				},
+		        link: function(scope, element, attrs) {
+					element.bind('click', function () {
+		        if (scope.cdToggleOnClick == true)
+						{
+						  scope.cdToggleOnClick = false; 
+						}
+						else
+						{
+						  scope.cdToggleOnClick = true;
+						}
+						scope.$apply();
+		      });
+		    }
+		  }
+		});				
