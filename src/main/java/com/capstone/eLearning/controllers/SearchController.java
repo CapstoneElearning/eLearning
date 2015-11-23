@@ -2,6 +2,8 @@ package com.capstone.eLearning.controllers;
 
 import java.util.List;
 
+import javax.ws.rs.Path;
+
 import org.apache.commons.lang.StringEscapeUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,14 +13,12 @@ import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.capstone.eLearning.domain.Course;
-import com.capstone.eLearning.exception.ServiceException;
 import com.capstone.eLearning.services.CourseSearchService;
 
-@RestController
-@RequestMapping("/search")
+@Path("/search")
 public class SearchController {
 	private Logger logger = LoggerFactory.getLogger(SearchController.class);
 
@@ -28,15 +28,12 @@ public class SearchController {
 
 	/*
 	 * Search for courses by program name
-	 * 
-	 * URL Format:
-	 * http://localhost:8080/search/program/<<search_term_goes_here>>
 	 */
 	@RequestMapping(value="/program/{search_term}", method=RequestMethod.GET)
-	public String searchByProgramName(
-			@PathVariable(value="search_term") String search_term) throws ServiceException {
+	public @ResponseBody String searchByProgramName(
+			@PathVariable(value="search_term") String search_term) {
 		if (StringUtils.isEmpty(search_term)) {
-			throw new ServiceException("Search program name is empty!");
+			return "Search program name is empty!";
 		}
 
 		String unescapedText = StringEscapeUtils.unescapeJava(search_term);
@@ -59,15 +56,12 @@ public class SearchController {
 
 	/*
 	 * Search for courses by dept name
-	 * 
-	 * URL Format:
-	 * http://localhost:8080/search/department/<<search_term_goes_here>>
 	 */
 	@RequestMapping(value="/department/{search_term}", method=RequestMethod.GET)
-	public String searchByDepartmentName(
-			@PathVariable(value="search_term") String search_term) throws ServiceException {
+	public @ResponseBody String searchByDepartmentName(
+			@PathVariable(value="search_term") String search_term) {
 		if (StringUtils.isEmpty(search_term)) {
-			throw new ServiceException("Search dept name is empty!");
+			return "Search department name is empty!";
 		}
 
 		String unescapedText = StringEscapeUtils.unescapeJava(search_term);
@@ -90,15 +84,12 @@ public class SearchController {
 
 	/*
 	 * Search for courses by subject name
-	 * 
-	 * URL Format:
-	 * http://localhost:8080/search/subject/<<search_term_goes_here>>
 	 */
 	@RequestMapping(value="/subject/{search_term}", method=RequestMethod.GET)
-	public String searchBySubjectName(
-			@PathVariable("search_term") String search_term) throws ServiceException {
+	public @ResponseBody String searchBySubjectName(
+			@PathVariable("search_term") String search_term) {
 		if (StringUtils.isEmpty(search_term)) {
-			throw new ServiceException("Search subject name is empty!");
+			return "Search subject name is empty!";
 		}
 
 		String unescapedText = StringEscapeUtils.unescapeJava(search_term);
