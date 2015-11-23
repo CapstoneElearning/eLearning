@@ -1,4 +1,4 @@
-﻿(function () {
+(function () {
     'use strict';
 
     angular
@@ -12,6 +12,7 @@
         service.Login = uLogin;
         service.SetCredentials = SetCredentials;
         service.ClearCredentials = ClearCredentials;
+        service.SetUser = SetUser;
 
         return service;
 
@@ -36,6 +37,10 @@
             $http.defaults.headers.common['Authorization'] = 'Basic ' + authdata; // jshint ignore:line
             $cookieStore.put('globals', $rootScope.globals);
         }
+       
+       function SetUser(user) {
+           $rootScope.globals.UserProfile=user;
+       }
 
         function ClearCredentials() {
             $rootScope.globals = {};
