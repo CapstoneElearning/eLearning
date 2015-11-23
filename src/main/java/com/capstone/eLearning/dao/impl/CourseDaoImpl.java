@@ -254,5 +254,36 @@ public class CourseDaoImpl implements CourseDao {
 			throw new DaoException(e);
 		}
 	}
+	
+	@Override
+	public List<Course> getAll() {
+		String sql = "SELECT * FROM course";
+
+		logger.info(":::: SQL Constructed ::::\n{}", sql);
+
+		List<Map<String, Object>> rows = dbTemplate.queryForList(sql);
+		List<Course> courseList = new ArrayList<Course>();
+
+		for (Map<String, Object> row : rows) {
+			Course course = new Course();
+			course.setId(Integer.parseInt(String.valueOf(row.get("id_pk"))));
+			course.setDescription(String.valueOf(row.get("description")));
+			course.setSubject(findSubjectById(String.valueOf(row.get("subject"))));
+			course.setDepartment(findDeptById(String.valueOf(row.get("dept"))));
+			course.setCredits(Double.parseDouble(String.valueOf(row.get("credits"))));
+			course.setActive(Boolean.valueOf(String.valueOf(row.get("active"))));
+			DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+			Date date = null;
+			try {
+				date = format.parse(String.valueOf(row.get("start_date")));
+			} catch (ParseException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			course.setStart_date(date);
+			courseList.add(course);
+		}
+		return courseList;
+	}
 
 }
