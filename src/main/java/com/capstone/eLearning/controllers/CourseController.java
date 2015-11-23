@@ -1,28 +1,36 @@
 package com.capstone.eLearning.controllers;
 
-import javax.ws.rs.QueryParam;
-import javax.ws.rs.core.Response;
+import java.util.List;
 
+import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
+import javax.ws.rs.GET;
+import javax.ws.rs.POST;
+import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
+import javax.ws.rs.Produces;
+import javax.ws.rs.WebApplicationException;
+import javax.ws.rs.core.Response.Status;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.util.StringUtils;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.capstone.eLearning.domain.Course;
-import com.capstone.eLearning.exception.ServiceException;
 import com.capstone.eLearning.services.CourseService;
 import com.google.gson.Gson;
 
 /*
  * Controller that can handle Create/Retrieve/Delete operations for Course
  */
-@RestController
-@RequestMapping("/course")
+@Path("/")
 public class CourseController {
+	private Logger logger = LoggerFactory.getLogger(CourseController.class);
+
 	@Autowired
 	@Qualifier("courseServiceImpl")
 	private CourseService courseService;
@@ -30,47 +38,45 @@ public class CourseController {
 	private Gson gson = new Gson();
 
 	/*
-	 * Create course from input Json String (POST json representation of course obj to be created)
-	 * 
-	 * URL Format:
-	 * http://localhost:8080/course/create (you should HTTP POST a json string representing a course)
+	 * Create course from input Json String (POST json representation of course
+	 * obj to be created)
 	 */
-	@RequestMapping(value="/create", method=RequestMethod.POST)
-	public Response create(
-			@RequestBody String courseJsonString) throws ServiceException {
-		if (StringUtils.isEmpty(courseJsonString)) {
-			throw new ServiceException("Course JSON input string cannot be empty!");
+	@POST
+	@Path("/course")
+	@Produces("application/xml,application/json")
+	@Consumes("application/xml,application/json")
+	public @ResponseBody void create(@RequestBody String courseJsonString) throws Exception {
+		if (courseJsonString == null) {
+			logger.error("Course JSON input string cannot be null!");
+			return;
 		}
 
 		try {
 			Course course = gson.fromJson(courseJsonString, Course.class);
 			courseService.create(course);
-			return Response.ok("Create course succeeded").build();
-		}
-		catch (Exception e) {
-			throw new ServiceException("Create course failed", e);
+		} catch (Exception e) {
+			logger.error("Error creating course: ", e);
+			throw e;
 		}
 	}
 
 	/*
 	 * Delete course by Id
-	 * 
-	 * URL Format:
-	 * http://localhost:8080/course/delete/<<course_id_goes_here>>
 	 */
-	@RequestMapping(value="/delete/{course_id}", method=RequestMethod.GET)
-	public String delete(
-			@PathVariable(value="course_id") Long course_id) throws ServiceException {
+	@Path("/course/{course_id}")
+	@DELETE
+	@Produces("application/xml,application/json")
+	public @ResponseBody void delete(@PathParam(value = "course_id") Long course_id) throws Exception {
 		if (StringUtils.isEmpty(course_id)) {
-			throw new ServiceException("course_id is empty!");
+			logger.error("course_id is empty!");
+			return;
 		}
 
 		try {
 			courseService.delete(course_id);
-			return "Delete course succeeded";
-		}
-		catch (Exception e) {
-			throw new ServiceException("Delete course failed", e);
+		} catch (Exception e) {
+			logger.error("Error deleting course: ", e);
+			throw e;
 		}
 	}
 
@@ -78,45 +84,31 @@ public class CourseController {
 	 * Retrieve course by Id
 	 * 
 	 * Returns Json representation of the course obj
-	 * 
-	 * URL Format (HTTP GET):
-	 * http://localhost:8080/course/retrieve/<<course_id_goes_here>>
 	 */
-	@RequestMapping(value="/retrieve/{course_id}", method=RequestMethod.GET)
-	public String retrieve(
-			@PathVariable("course_id") Long course_id) throws ServiceException {
-		if (StringUtils.isEmpty(course_id)) {
-			throw new ServiceException("course_id is empty!");
-		}
-
-		Course course = courseService.retrieve(course_id);
-		
-		if (course != null) {
-			return gson.toJson(course);
-		}
-		
-		return null;
+	@GET
+	@Path("/course/{course_id}")
+	@Produces("application/xml, application/json")
+	public Course retrieve(@PathParam("course_id") Long course_id) {
+		Course course = null;
+		if (!StringUtils.isEmpty(course_id)) {
+			course = courseService.retrieve(course_id);
+		}	
+		return course;
 	}
-	
-	/*
-	 * Update course
-	 * 
-	 * URL should be HTTP GET of the form:
-	 * http://localhost:8080/course/update/<<course_id_goes_here>>?startd_date=yyyy-mm-dd&end_date=yyyy-mm-dd&credits=10&active=1
-	 */
-	@RequestMapping(value="/update/{course_id}", method=RequestMethod.GET)
-	public String update(@PathVariable("course_id") Long course_id, @QueryParam("startd_date") String startd_date, @QueryParam("end_date") String end_date, 
-			@QueryParam("credits") double credits, @QueryParam("instructor") int instructor, @QueryParam("active") int active) throws ServiceException {
-		if (StringUtils.isEmpty(course_id)) {
-			throw new ServiceException("course_id is empty!");
+
+	@GET
+	@Path("/course/list")
+	@Produces("application/json, application/xml")
+	public List<Course> getAll() {
+		List<Course> courses = null;
+		try {
+			courses = courseService.getAll();
+		} catch (Exception ex) {
+			logger.info("Exception::::::" + ex.getMessage());
+			throw new WebApplicationException(ex.getMessage(), Status.INTERNAL_SERVER_ERROR);
+
 		}
 
-		try {
-			courseService.update(course_id, startd_date, end_date, credits, instructor, active);
-			return "Update course succeeded";
-		}
-		catch (Exception e) {
-			throw new ServiceException("Update course failed", e);
-		}
+		return courses;
 	}
 }
