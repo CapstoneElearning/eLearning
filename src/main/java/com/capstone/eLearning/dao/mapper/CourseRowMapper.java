@@ -29,7 +29,7 @@ public class CourseRowMapper implements RowMapper<Course> {
 		    date = new java.util.Date(timestamp.getTime());
 		}
 		course.setSchedule_time(date);
-		course.setStartd_date(rs.getDate("startd_date"));
+		course.setStart_date(rs.getDate("start_date"));
 		course.setInstructor(rs.getInt("instructor"));
 		int pid = rs.getInt("program");
 		int sid = rs.getInt("subject");
