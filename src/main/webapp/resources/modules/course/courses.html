@@ -4,16 +4,77 @@
 	</div>
 	<div ng-show="vm.error" class="alert alert-danger">{{vm.error}}</div>
 
-	<div class="panel-body" ng-controller="CourseCtrl">
-		<div class="row">
+	<div class="panel-body" ng-controller="CourseCtrl as vm">
+		<div class="container">
 			<ul class="style3">
-				<li class="first" ng-repeat="course in courses">
-					<p class="date">
-						<a href="#">{{course.startDate}}</a>
-					</p>
-					<h3>{{course.category}}</h3> <a href="#">{{course.title}}</a>
+				<li class=first>
+					<div class="">
 
+						<div class="accordion-toggle"
+							ng-repeat-start="course in vm.courses"
+							cd-toggle-on-click="toggleRow">
+							<p class="date">
+								<a href="#">{{course.start_date | date:'dd MMM'}}</a>
+							</p>
+							<h3>{{course.department.name}}</h3>
+							<span>{{course.description}}</span>
+						</div>
+
+						<div class="course_view" ng-repeat-end="" ng-if="toggleRow">
+							<div id="leftCol">
+								<img alt="{{course.name}}"
+									src="/eLearning/resources/images/ds_algo.jpg">
+							</div>
+							<div id="rightCol">
+
+								<table>
+									<tbody>
+										<tr>
+											<td width="25%"><b>Course Description</b></td>
+											<td width="5%">&nbsp;</td>
+											<td width="70%">{{course.description}}</td>
+										</tr>
+										<tr>
+											<td><b>Start Date</b></td>
+											<td width="5%">&nbsp;</td>
+											<td>{{course.start_date | date:medium }}</td>
+										</tr>
+										<tr>
+											<td><b>Course Credits</b></td>
+											<td width="5%">&nbsp;</td>
+											<td>{{course.description}}</td>
+										</tr>
+										<tr>
+											<td><b>Course End Date</b></td>
+											<td width="5%">&nbsp;</td>
+											<td>{{course.end_date | date:medium}}</td>
+										</tr>
+										<tr>
+											<td><b> Schedule Day</b></td>
+											<td width="5%">&nbsp;</td>
+											<td>{{course.schedule_day | date:'DDD'}}</td>
+										</tr>
+										<tr>
+											<td><b>Instructor Name</b></td>
+											<td width="5%">&nbsp;</td>
+											<td>{{course.instructor}}</td>
+										</tr>
+										<tr>
+											<td><b>Subject Name</b></td>
+											<td width="5%">&nbsp;</td>
+											<td>{{course.subject.subjectDesc}}</td>
+										</tr>
+										<tr>
+											<td>&nbsp;</td>
+											<td width="5%">&nbsp;</td>
+											<td><a ui-sref=courses.enroll({id:course.id}) class="btn btn-primary">Enroll Course</a></td>
+										</tr>
+									</tbody>
+								</table>								
+							</div>
+						</div>
 				</li>
+
 			</ul>
 		</div>
 
