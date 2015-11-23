@@ -12,7 +12,7 @@ public class Course {
 	private String description;
 	private String schedule_day;
 	private Date schedule_time;
-    private Date startd_date;
+    private Date start_date;
 	private Date end_date;
 	private double credits;
 	private Subject subject;
@@ -62,13 +62,13 @@ public class Course {
 	}
 
 
-	public Date getStartd_date() {
-		return startd_date;
+	public Date getStart_date() {
+		return start_date;
 	}
 
 
-	public void setStartd_date(Date startd_date) {
-		this.startd_date = startd_date;
+	public void setStart_date(Date start_date) {
+		this.start_date = start_date;
 	}
 
 
@@ -158,7 +158,7 @@ public class Course {
 		         .add("description", description)
 		         .add("schedule_day", schedule_day)
 		         .add("schedule_time", schedule_time)
-		         .add("startd_date", startd_date)
+		         .add("start_date", start_date)
 		         .add("end_date", end_date)
 		         .add("credits", credits)
 		         .add("subject", subject)
