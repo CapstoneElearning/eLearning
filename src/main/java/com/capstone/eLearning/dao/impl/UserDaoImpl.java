@@ -22,7 +22,7 @@ import org.springframework.stereotype.Repository;
 
 import com.capstone.eLearning.dao.UserDao;
 import com.capstone.eLearning.dao.jdbc.UserPOJO;
-import com.capstone.eLearning.domain.Course;
+import com.capstone.eLearning.dao.mapper.UserRowMapper;
 import com.capstone.eLearning.domain.User;
 import com.capstone.eLearning.exception.DaoException;
 import com.capstone.eLearning.util.DataEncryptDecrypt;
@@ -55,6 +55,17 @@ public class UserDaoImpl implements UserDao {
 						"active", "registered_on", "role_id");
 	}
 
+	@Override
+	public User findById(long id) throws DaoException {
+		String sql = "SELECT * FROM users WHERE id_pk = ?";
+		try {
+			return jdbcTemplate.queryForObject(sql, new Object[] { id } , new UserRowMapper());
+		}
+		catch (Exception e) {
+			throw new DaoException(e);
+		}
+	}
+	
 	@Override
 	public int saveUser(User user) throws DaoException {
 		int userId;
