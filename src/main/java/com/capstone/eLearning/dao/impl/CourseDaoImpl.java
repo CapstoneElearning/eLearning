@@ -18,6 +18,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import com.capstone.eLearning.dao.CourseDao;
+import com.capstone.eLearning.dao.UserDao;
 import com.capstone.eLearning.dao.mapper.CourseRowMapper;
 import com.capstone.eLearning.dao.mapper.DepartmentRowMapper;
 import com.capstone.eLearning.dao.mapper.SubjectRowMapper;
@@ -33,6 +34,9 @@ public class CourseDaoImpl implements CourseDao {
 	@Autowired
 	private DataSource dataSource;
 	private JdbcTemplate dbTemplate;	
+	
+	@Autowired
+	private UserDao userDao;
 	
 	@PostConstruct
 	public void setup() {
@@ -59,7 +63,8 @@ public class CourseDaoImpl implements CourseDao {
 				course.setDepartment(findDeptById(String.valueOf(row.get("dept"))));
 				course.setCredits(Double.parseDouble(String.valueOf(row.get("credits"))));
 				course.setActive(Boolean.valueOf(String.valueOf(row.get("active"))));
-				course.setInstructor(Integer.parseInt(String.valueOf(row.get("instructor"))));
+				/* set a course object with matching id as the instructor */
+				course.setInstructor(userDao.findById(Integer.parseInt(String.valueOf(row.get("instructor")))));
 				course.setRoom(Integer.parseInt(String.valueOf(row.get("room"))));
 				course.setSchedule_day(String.valueOf(row.get("schedule_day")));
 				course.setStart_date(new java.util.Date(String.valueOf(row.get("start_date"))));
@@ -94,7 +99,7 @@ public class CourseDaoImpl implements CourseDao {
 				course.setDepartment(findDeptById(String.valueOf(row.get("dept"))));
 				course.setCredits(Double.parseDouble(String.valueOf(row.get("credits"))));
 				course.setActive(Boolean.valueOf(String.valueOf(row.get("active"))));
-				course.setInstructor(Integer.parseInt(String.valueOf(row.get("instructor"))));
+				course.setInstructor(userDao.findById(Integer.parseInt(String.valueOf(row.get("instructor")))));
 				course.setRoom(Integer.parseInt(String.valueOf(row.get("room"))));
 				course.setSchedule_day(String.valueOf(row.get("schedule_day")));
 				course.setStart_date(new java.util.Date(String.valueOf(row.get("start_date"))));
@@ -128,7 +133,7 @@ public class CourseDaoImpl implements CourseDao {
 				course.setDepartment(findDeptById(String.valueOf(row.get("dept"))));
 				course.setCredits(Double.parseDouble(String.valueOf(row.get("credits"))));
 				course.setActive(Boolean.valueOf(String.valueOf(row.get("active"))));
-				course.setInstructor(Integer.parseInt(String.valueOf(row.get("instructor"))));
+				course.setInstructor(userDao.findById(Integer.parseInt(String.valueOf(row.get("instructor")))));
 				course.setRoom(Integer.parseInt(String.valueOf(row.get("room"))));
 				course.setSchedule_day(String.valueOf(row.get("schedule_day")));
 				course.setStart_date(new java.util.Date(String.valueOf(row.get("start_date"))));
@@ -243,7 +248,7 @@ public class CourseDaoImpl implements CourseDao {
 				course.setSubject(findSubjectById(String.valueOf(row.get("subject"))));
 				course.setDepartment(findDeptById(String.valueOf(row.get("dept"))));
 				course.setCredits(Double.parseDouble(String.valueOf(row.get("credits"))));
-				course.setInstructor(Integer.parseInt(String.valueOf(row.get("instructor"))));
+				course.setInstructor(userDao.findById(Integer.parseInt(String.valueOf(row.get("instructor")))));
 				course.setRoom(Integer.parseInt(String.valueOf(row.get("room"))));
 				course.setSchedule_day(String.valueOf(row.get("schedule_day")));
 				course.setActive(Boolean.valueOf(String.valueOf(row.get("active"))));

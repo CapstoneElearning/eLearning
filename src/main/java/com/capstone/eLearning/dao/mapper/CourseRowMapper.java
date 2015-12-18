@@ -4,8 +4,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.RowMapper;
 
+import com.capstone.eLearning.dao.UserDao;
 import com.capstone.eLearning.domain.Course;
 import com.capstone.eLearning.domain.Department;
 import com.capstone.eLearning.domain.Program;
@@ -13,6 +15,9 @@ import com.capstone.eLearning.domain.Subject;
 
 public class CourseRowMapper implements RowMapper<Course> {
 
+	@Autowired
+	private UserDao userDao;
+	
 	@Override
 	public Course mapRow(ResultSet rs, int rowNum) throws SQLException {
 		Course course = new Course();
@@ -30,7 +35,7 @@ public class CourseRowMapper implements RowMapper<Course> {
 		}
 		course.setSchedule_time(date);
 		course.setStart_date(rs.getDate("start_date"));
-		course.setInstructor(rs.getInt("instructor"));
+		course.setInstructor(userDao.findById(rs.getInt("instructor")));
 		int pid = rs.getInt("program");
 		int sid = rs.getInt("subject");
 		int did = rs.getInt("department");

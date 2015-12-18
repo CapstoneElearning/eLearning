@@ -18,7 +18,7 @@ public class Course {
 	private Subject subject;
 	private Department department;
 	private Program program;
-	private int instructor;
+	private User instructor;
 	private int room;
 	private boolean active;
 
@@ -122,12 +122,12 @@ public class Course {
 	}
 
 
-	public int getInstructor() {
+	public User getInstructor() {
 		return instructor;
 	}
 
 
-	public void setInstructor(int instructor) {
+	public void setInstructor(User instructor) {
 		this.instructor = instructor;
 	}
 

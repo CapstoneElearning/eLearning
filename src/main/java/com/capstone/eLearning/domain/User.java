@@ -4,13 +4,13 @@ import java.util.Date;
 
 import javax.xml.bind.annotation.XmlRootElement;
 
+import jersey.repackaged.com.google.common.base.Objects;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 @XmlRootElement(name = "users")
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
-
-	
 	public User(){
 		
 	}
@@ -170,6 +170,32 @@ public class User {
 		this.zip = zip;
 	}
 
+	@Override
+	public String toString() {
+		return Objects.toStringHelper(this)
+		         .add("id", id)
+		         .add("name", username)
+		         .add("password", password)
+		         .add("fname", fname)
+		         .add("lname", lname)
+		         .add("mname", mname)
+		         .add("dob", dob)
+		         .add("email", email)
+		         .add("phone_home", phone_home)
+		         .add("phone_cell", phone_cell)
+		         .add("address1", address1)
+		         .add("address2", address2)
+		         .add("city", city)
+		         .add("state", state)
+		         .add("zip", zip)
+		         .add("country", country)
+		         .add("pwd_hint", pwd_hint)
+		         .add("pwd_hint_ans", pwd_hint_ans)
+		         .add("active", active)
+		         .add("registered_on", registered_on)
+		         .add("role_id", role_id)
+		         .toString();
+	}
 	
 	
 }
