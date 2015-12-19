@@ -61,6 +61,9 @@ public class UserDaoImpl implements UserDao {
 		try {
 			return jdbcTemplate.queryForObject(sql, new Object[] { id } , new UserRowMapper());
 		}
+		catch (org.springframework.dao.EmptyResultDataAccessException e) {
+			return null;
+		}
 		catch (Exception e) {
 			throw new DaoException(e);
 		}

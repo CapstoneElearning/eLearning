@@ -1,10 +1,6 @@
 package com.capstone.eLearning.dao.impl;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -195,6 +191,9 @@ public class CourseDaoImpl implements CourseDao {
 		try {
 			return dbTemplate.queryForObject(sql, new Object[] { courseId } , new CourseRowMapper());
 		}
+		catch (org.springframework.dao.EmptyResultDataAccessException e) {
+			return null;
+		}
 		catch (Exception e) {
 			throw new DaoException(e);
 		}
@@ -215,7 +214,7 @@ public class CourseDaoImpl implements CourseDao {
 	public void update(Long courseId, String start_date, String end_date, double credits, int instructor, int active) throws DaoException {
 		String sql = "UPDATE course SET start_date=?, end_date=?, credits=?, instructor=?, active=? WHERE id_pk = ?";
 		try {
-			dbTemplate.update(sql, new Object[] { start_date, end_date, credits, instructor, active, courseId});
+			dbTemplate.update(sql, new Object[] { start_date, end_date, credits, instructor, active, courseId });
 		}
 		catch (Exception e) {
 			throw new DaoException(e);
@@ -265,34 +264,18 @@ public class CourseDaoImpl implements CourseDao {
 	}
 	
 	@Override
-	public List<Course> getAll() {
-		String sql = "SELECT * FROM course";
-
-		logger.info(":::: SQL Constructed ::::\n{}", sql);
-
-		List<Map<String, Object>> rows = dbTemplate.queryForList(sql);
-		List<Course> courseList = new ArrayList<Course>();
-
-		for (Map<String, Object> row : rows) {
-			Course course = new Course();
-			course.setId(Integer.parseInt(String.valueOf(row.get("id_pk"))));
-			course.setDescription(String.valueOf(row.get("description")));
-			course.setSubject(findSubjectById(String.valueOf(row.get("subject"))));
-			course.setDepartment(findDeptById(String.valueOf(row.get("dept"))));
-			course.setCredits(Double.parseDouble(String.valueOf(row.get("credits"))));
-			course.setActive(Boolean.valueOf(String.valueOf(row.get("active"))));
-			DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-			Date date = null;
-			try {
-				date = format.parse(String.valueOf(row.get("start_date")));
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			course.setStart_date(date);
-			courseList.add(course);
+	public void enroll(String enroll_date, String completion_date, int active,
+			int student_id, int course_id, String course_enrollmentcol) {
+		String sql = "INSERT INTO course_enrollment " +
+				"(enroll_date, completion_date, active, student_id, course_id, course_enrollmentcol) "
+				+ "VALUES (?, ?, ?, ?, ?, ?)";
+		
+		try {
+			dbTemplate.update(sql, new Object[] { 
+					enroll_date, completion_date, active, student_id, course_id, course_enrollmentcol });  
 		}
-		return courseList;
+		catch (Exception e) {
+			throw new DaoException(e);
+		}
 	}
-
 }

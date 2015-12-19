@@ -95,7 +95,7 @@ public class AssignmentController {
 			return gson.toJson(assignment);
 		}
 		
-		return null;
+		return "Nothing found!";
 	}
 	
 	/*
