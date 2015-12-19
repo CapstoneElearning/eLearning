@@ -64,7 +64,19 @@ public class CourseServiceImpl implements CourseService {
 	
 	@Override
 	public List<Course> getAll() {
-		List<Course> courses=courseDao.getAll();
+		List<Course> courses=courseDao.findAllCourses();
 		return courses;
+	}
+
+	@Override
+	public void enroll(String enroll_date, String completion_date, int active,
+			int student_id, int course_id, String course_enrollmentcol)
+			throws Exception {
+		try {
+			courseDao.enroll(enroll_date, completion_date, active, student_id, course_id, course_enrollmentcol);
+		}
+		catch (DaoException e) {
+			throw new ServiceException("Update course failed", e);
+		}
 	}
 }

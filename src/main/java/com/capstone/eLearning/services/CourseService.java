@@ -11,4 +11,9 @@ public interface CourseService {
 	void delete(Long courseId) throws ServiceException;
 	void update(Long courseId, String startd_date, String end_date, double credits, int instructor, int active) throws ServiceException;
 	public List<Course> getAll();
+	public void enroll(String enroll_date, 
+			           String completion_date, 
+					   int active, int student_id, 
+					   int course_id, 
+					   String course_enrollmentcol) throws Exception;
 }

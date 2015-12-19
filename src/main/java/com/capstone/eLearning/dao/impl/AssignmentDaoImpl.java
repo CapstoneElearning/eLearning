@@ -46,6 +46,9 @@ public class AssignmentDaoImpl implements AssignmentDao {
 		try {
 			return dbTemplate.queryForObject(sql, new Object[] { id } , new AssignmentRowMapper());
 		}
+		catch (org.springframework.dao.EmptyResultDataAccessException e) {
+			return null;
+		}
 		catch (Exception e) {
 			throw new DaoException(e);
 		}
